@@ -38,7 +38,7 @@
             <ul class="nav navbar-nav">
               <!-- Login -->
               <li class="dropdown user user-menu">
-                <a href="<?php echo base_url(''); ?>">
+                <a href="<?php echo base_url() ?>cLoginPasien">
                   <i class="glyphicon glyphicon-log-in"></i>
                   <span class="hidden-xs">Login</span>
                 </a>
@@ -127,20 +127,17 @@
               </div>
               
 
-             <div class="active tab-pane" id="queue" >
-                <div class="row">
-                  <div class="row" style="margin-left: 10px; margin-right: 10px;">
-                       <center>
+                <div class="active tab-pane" id="queue">
+                    <div class="row" id="starts" style="margin-left: 10px; margin-right: 10px;">
+                     <center>
                           <div class="box-body">
                             <p> Queue Now </p>
                            <font size="7">10</font>
                           </div>
                         </center>
-                  </div>
-
-                
-                </div>
+                    </div>
               </div>
+
 
             
 

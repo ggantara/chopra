@@ -15,7 +15,7 @@ class Pasien extends CI_Controller {
     //$this->load->view('pasien_booking');
     //$this->load->view('pasien_profile');
     //$this->load->view('pasien_bookinglogin');
-    $this->load->view('pasien_queue');
+    //$this->load->view('pasien_queue');
   
   }
 }

@@ -27,11 +27,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
   <script type="text/javascript">
-      function closeModal(){
-        document.getElementById("suksesregistrasi").className = "Modal hide";
+       function closeModal(){
+        document.getElementById("GagalRegistrasiIdAda").className = "Modal hide";
       }
       function closeModal1(){
-        document.getElementById("gagalregistrasi").className = "Modal hide";
+        document.getElementById("GagalRegistrasiNamaAda").className = "Modal hide";
+      }
+      function closeModal2(){
+        document.getElementById("suksesregistrasi").className = "Modal hide";
       }
     </script>
 
@@ -47,6 +50,17 @@
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand"><b>Chopra</b> Child Care Clinic</a>
+          <div class="navbar-custom-menu" id="menukanan">
+            <ul class="nav navbar-nav">
+              <!-- Login -->
+              <li class="dropdown user user-menu">
+                <a href="<?php echo base_url() ?>cLoginPasien">
+                  <i class="glyphicon glyphicon-log-in"></i>
+                  <span class="hidden-xs">Login</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
@@ -62,7 +76,7 @@
                 <div class="small-box" style="background-color: #e8c86b; margin-left: 10px; margin-top: 10px; margin-right: 10px;">
                   <div class="inner">
                     <h3>Pasien</h3>
-                    <p>Registrations</p>
+                    <p>Registration</p>
                   </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
@@ -79,7 +93,7 @@
             <div class="col-md-12">
                 <div class="box box-warning">
                     <div class="box-body">
-                      <form method="post" action="<?php echo base_url('')?>">
+                      <form method="post" action="<?=base_url()?>cRegistrasiPasien/registrasi">
 
                         <div class="form-group">
                             <label>ID Number Pasien:</label>
@@ -87,7 +101,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </div>
-                                <input type="text" class="form-control" placeholder="KK" name="no_kk" required="" value="">
+                                <input type="text" class="form-control" placeholder="KK" name="id_pasien" required="" value="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -105,7 +119,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Mother Leader" name="nama_ibu" required="" value="">
+                                <input type="text" class="form-control" placeholder="Mother Name" name="nama_ibu" required="" value="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -114,7 +128,7 @@
                             <div class="input-group-addon">
                           <i class="fa fa-calendar"></i>
                           </div>
-                            <input min="<?php echo date('Y-m-d') ?>" type="date"  data-format="dd/MM/yyyy" class="form-control pull-right" id="datepicker" name="ttl" required>
+                            <input max="<?php echo date('Y-m-d') ?>" type="date"  data-format="dd/MM/yyyy" class="form-control pull-right" id="datepicker" name="tgl_lahir" required>
                           </div>
                         </div>
                         <div class="form-group">
@@ -123,7 +137,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </div>
-                                <select class="form-control">
+                                <select class="form-control" name="jk">
                                   <option>Female</option>
                                   <option>Male</option>
                     
@@ -136,7 +150,16 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-envelope-o"></i>
                                 </div>
-                                <textarea class="form-control" rows="3" placeholder="Addres"></textarea>
+                                <textarea class="form-control" name="alamat" rows="3" placeholder="Addres"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-envelope-o"></i>
+                                </div>
+                                <input type="email" class="form-control" placeholder="Email" name="email" required="" value="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -145,7 +168,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-phone"></i>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Phone" name="nohp" required="" value="">
+                                <input type="text" class="form-control" placeholder="Phone" name="no_hp" required="" value="">
                             </div>
                         </div>
                         <div class="form-group">
@@ -163,7 +186,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
                                 </div>
-                                <input type="password" for="pawssword-input-field" class="form-control" placeholder="Password" name="pass" required="" id="pass">
+                                <input type="password" for="pawssword-input-field" class="form-control" placeholder="Password" name="password" required="" id="pass">
                             </div>
                         </div>
                         <div class="form-group">
@@ -175,15 +198,15 @@
                                 <input type="password" for="repeat-pawssword-input-field" class="form-control" placeholder="Retype Password" name="repass" required="" id="repass"><span id="message"></span>
                             </div>
                         </div>
-                         <div class="form-group">
+                         <!-- <div class="form-group">
                          
-                            <label>Scan Identity:</label>
+                            <label>Scan KK Identity:</label>
                             <div class="input-group">
                               
-                                <input type="file" id="exampleInputFile" name="scan">
+                                <input type="file" id="exampleInputFile" name="kk">
                                 <p class="help-block">Input file .pdf</p>
                             </div>
-                        </div>
+                        </div> -->
                         
                         <button class="btn btn-warning" type="submit" data-toggle="modal" data-target="#modal-submit">Submit</button>
                       </form>
@@ -201,26 +224,80 @@
 
 
 
-  <!-- <div class="modal show" id="gagalregistrasi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          
-          <h3 class="modal-title" id="myModalLabel" style="text-align: center;"><b>Information</b></h3>
-        </div>
-        <div class="modal-body" style="text-align: center;">
-          <img src="<?=base_url()?>assets/img/sedih.png" style="width:150px;"><br><br>
-          <h4>Sorry, Your Registration Failed !</h4>
-          <h5>Email already used, please use another email</h5>
-        </div> 
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger pull-right" onclick="closeModal1()">Tutup</button>
-        </div>
-      </div>          
-    </div>
-  </div> -->
+  <?php
+              if($this->session->flashdata('suksesregistrasi')){
+            ?>
+                <div class="modal show" id="suksesregistrasi" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        
+                        <h3 class="modal-title" id="myModalLabel" style="text-align: center;"><b>Information</b></h3>
+                      </div>
+                      <div class="modal-body" style="text-align: center;">
+                        <br><br>
+                        <h4>Registration Successfully !</h4>
+                        <h5>Please login <b>after admin activited your account</b></h5>
+                        <h5>Or calling 0987654321</h5>
+                      </div> 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger pull-right" onclick="closeModal2()">Close</button>
+                      </div>
+                    </div>          
+                  </div>
+                </div>
+            <?php
+              }
+            ?>
 
-
+            <?php
+              if($this->session->flashdata('GagalRegistrasiNamaAda')){
+            ?>
+                <div class="modal show" id="GagalRegistrasiNamaAda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        
+                        <h3 class="modal-title" id="myModalLabel" style="text-align: center;"><b>Information</b></h3>
+                      </div>
+                      <div class="modal-body" style="text-align: center;">
+                        <br><br>
+                        <h4>Sorry, Registration Failed !</h4>
+                        <h5>Username used</h5>
+                      </div> 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger pull-right" onclick="closeModal1()">Close</button>
+                      </div>
+                    </div>          
+                  </div>
+                </div>
+            <?php
+              }
+            ?>
+            <?php
+              if($this->session->flashdata('GagalRegistrasiIdAda')){
+            ?>
+                <div class="modal show" id="GagalRegistrasiIdAda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        
+                        <h3 class="modal-title" id="myModalLabel" style="text-align: center;"><b>Information</b></h3>
+                      </div>
+                      <div class="modal-body" style="text-align: center;">
+                        <br><br>
+                        <h4>Sorry, registration Failed !</h4>
+                        <h5>Number of KK sudah ada</h5>
+                      </div> 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger pull-right" onclick="closeModal()">Close</button>
+                      </div>
+                    </div>          
+                  </div>
+                </div>
+            <?php
+              }
+            ?>
 
 
 <!-- Footer -->

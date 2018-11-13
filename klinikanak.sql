@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2018 at 01:18 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Nov 13, 2018 at 10:22 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
+  `id_admin` bigint(18) NOT NULL,
   `username` varchar(10) NOT NULL,
   `password` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -115,9 +118,19 @@ CREATE TABLE `pasien` (
   `password` varchar(10) NOT NULL,
   `no_kk` int(20) NOT NULL,
   `kk` int(11) NOT NULL,
-  `status_registrasi` varchar(11) NOT NULL,
+  `status_registrasi` tinyint(1) NOT NULL,
   `tgl_registrasi` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pasien`
+--
+
+INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `tgl_lahir`, `jk`, `nama_ibu`, `no_hp`, `email`, `alamat`, `username`, `password`, `no_kk`, `kk`, `status_registrasi`, `tgl_registrasi`) VALUES
+(0, '', '0000-00-00', '', '', 0, '', '', '', 'd41d8cd98f', 0, 0, 0, '2018-11-13 18:26:58'),
+(135678, 'A', '2018-11-23', 'Male', 'B', 954321, '', '', 'aaa', '47bce5c74f', 0, 0, 0, '2018-11-13 08:47:44'),
+(347890, 'Bagus', '2018-10-31', 'Male', 'Rini', 953, 'rini@gmail.com', 'Nganjuk', 'bagus', '17b38fc02f', 0, 0, 1, '2018-11-13 19:07:26'),
+(1234567890, 'Ahmad', '2011-02-16', 'Female', 'Siti', 7654321, 'ahmad@gmail.com', 'Yogyakarta', 'ahmad', '61243c7b9a', 0, 0, 0, '2018-11-13 18:04:07');
 
 -- --------------------------------------------------------
 
@@ -181,26 +194,26 @@ ALTER TABLE `periksa`
 --
 ALTER TABLE `antrian`
   MODIFY `no_antrian` int(255) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `apoteker`
 --
 ALTER TABLE `apoteker`
   MODIFY `id_apoteker` int(255) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `obat`
 --
 ALTER TABLE `obat`
   MODIFY `id_obat` int(255) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `pasien`
---
-ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(255) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `periksa`
 --
 ALTER TABLE `periksa`
   MODIFY `id_periksa` int(255) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
