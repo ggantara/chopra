@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chopra | Pasien Login</title>
-    <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+    <title>Chopra | Patient Login</title>
+    <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
     <link rel="stylesheet" href="<?php echo base_url('/assets/bootstrap/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('/assets/css/-Login-form-Page-BS4-.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('/assets/css/styles.css');?>">
@@ -28,24 +28,20 @@
                 <div class="justify-content-center align-items-center align-content-center m-auto w-lg-75 w-xl-50" style="width:204px;margin:0px 0px 0px 0px;margin-right:100px;margin-top:20px;margin-bottom:20px;margin-left:100px;">
 
                     <h4 class="text-center text-info font-weight-light mb-5">
-                        <img src = "<?php echo base_url('assets/img/logougm.png');?>" style="width:40px;height:40px;margin-bottom:0px;">Child Care Clinic
+                        Child Care Clinic
                     </h4>
                     
-                    <form method="post" action="<?=base_url()?>cLoginPasien/cek_login">
+                    <form  action="<?=base_url()?>cLoginPasien/cek_login" method="post">
                         <div class="form-group">
-                            <label class="text-secondary">Username Pasien</label>
+                            <label class="text-secondary">Username Patient</label>
                             <input class="form-control" name ="username" type="text" autofocus required value="<?php if($username != null){echo $username;}?>" >
                         </div>
                         <div class="form-group">
-                            <label class="text-secondary">Password Pasien</label>
+                            <label class="text-secondary">Password Patient</label>
                             <input class="form-control" name="password" type="password" required="">
                         </div>
                             <button class="btn btn-primary mt-2" type="submit">Log In</button>
-                        <!-- <?php
-                            if($this->session->flashdata('error')){
-                                echo "<br><p><font color='#FF0000'><b><small>Email or password is wrong!</small></b></font></p>";
-                            }
-                        ?> -->
+                     
                     </form>
 
                     <p class="mt-3 mb-0">
@@ -60,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-6 d-flex align-items-end" id="bg-block" style="background-size:cover;background-position:center center;background-image:url(&quot;assets/img/6.jpg&quot;);">
+            <div class="col-lg-6 d-flex align-items-end" id="bg-block" style="background-size:cover;background-position:center center;background-image:url(&quot;assets/img/c4.jpg&quot;);">
                 <p class="ml-auto small text-dark mb-2">
                     <em>Chopra | Child Care Clinic&nbsp;</em><br>
                 </p>

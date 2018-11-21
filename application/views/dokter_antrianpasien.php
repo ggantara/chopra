@@ -5,8 +5,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chopra |Pasien Queue</title>
-  <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+  <title>Chopra |Patient Queue</title>
+  <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
 
   <!-- Mendefinisikan Link CSS, Font, Bootsstrap, dsb -->
 
@@ -44,7 +44,9 @@
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+                <?php 
+                    $row = $this->db->query("SELECT * FROM dokter where username='".$this->session->username."'")->row_array();
+                ?>
 
 <!--action rubah sandi-->
         
@@ -82,20 +84,20 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email pengguna -->
-                <span class="hidden-xs">Dokter Sinta</span>
+                <span class="hidden-xs">Doctor <?php echo $row['nama_dokter']; ?></span>
               </a>
 
               <ul class="dropdown-menu">
                 <li class="user-header">
                   <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
                   <p>
-                    Dokter Sinta
+                    Doctor <?php echo $row['nama_dokter']; ?>
                     
                   </p>
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url(''); ?>" class="btn btn-default btn-flat">Sign out</a>
+                     <a href="<?php echo base_url('cLoginDokter/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -115,7 +117,7 @@
             <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p> Dokter Sinta</p>
+            <p> Doctor <?php echo $row['nama_dokter']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -126,7 +128,7 @@
 
           <!-- Halaman Profile-->
           <li >
-            <a href="#">
+            <a href="<?=base_url()?>cDokter">
               <i class="fa fa-user"></i> 
               <span>Profile</span>
             </a>
@@ -134,8 +136,8 @@
 
           <!-- Halaman Schedule -->
           <li class="active treeview">
-            <a href="#">
-              <i class="fa fa-calendar"></i> <span>Pasien Queue</span>
+            <a href="<?=base_url()?>cDokter/hal_data_antrianpasien">
+              <i class="fa fa-calendar"></i> <span>Patient Queue</span>
             </a>
           </li>
 
@@ -149,11 +151,11 @@
       <!-- Menampilkan kontent header yang mengandung Breadcrumb -->
       <section class="content-header">
         <h1>
-          Pasien Queue
+          Patient Queue
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Pasien Queue</li>
+          <li class="active">Patient Queue</li>
         </ol>
       </section>
 
@@ -186,7 +188,9 @@
                       <td></td>
                       <td>
                         <div class="btn-group"> 
+                        <a href="<?=base_url()?>cDokter/hal_data_checkuppasien">
                         <button type="button" class="btn btn-info" >Checkup</i></button>
+                        </a>
                         </div>
                         
 

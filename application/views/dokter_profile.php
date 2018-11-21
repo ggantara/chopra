@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Chopra |Doctor Profile</title>
-  <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+  <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
 
   <!-- Mendefinisikan Link CSS, Font, Bootsstrap, dsb -->
 
@@ -44,7 +44,9 @@
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+                <?php 
+                    $row = $this->db->query("SELECT * FROM dokter where username='".$this->session->username."'")->row_array();
+                ?>
 
 <!--action rubah sandi-->
         
@@ -82,20 +84,19 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email pengguna -->
-                <span class="hidden-xs">Dokter Sinta</span>
+                <span class="hidden-xs"> Doctor <?php echo $row['nama_dokter']; ?></span>
               </a>
 
               <ul class="dropdown-menu">
                 <li class="user-header">
                   <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
                   <p>
-                    Dokter Sinta
-                    
+                   Doctor <?php echo $row['nama_dokter']; ?>
                   </p>
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url(''); ?>" class="btn btn-default btn-flat">Sign out</a>
+                     <a href="<?php echo base_url('cLoginDokter/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -115,7 +116,7 @@
             <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p> Dokter Sinta</p>
+            <p> Doctor <?php echo $row['nama_dokter']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -126,7 +127,7 @@
 
           <!-- Halaman Profile-->
           <li class="active treeview">
-            <a href="#">
+           <a href="<?=base_url()?>cDokter">
               <i class="fa fa-user"></i> 
               <span>Profile</span>
             </a>
@@ -134,8 +135,8 @@
 
           <!-- Halaman Schedule -->
           <li>
-            <a href="#">
-              <i class="fa fa-calendar"></i> <span>Pasien Queue</span>
+             <a href="<?=base_url()?>cDokter/hal_data_antrianpasien">
+              <i class="fa fa-calendar"></i> <span>Patient Queue</span>
             </a>
           </li>
 
@@ -205,27 +206,31 @@
                     <table>
                       <tr>
                         <td>NIP :&nbsp;&nbsp;</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['nip']; ?></td>
                       </tr>
                       <tr>
                         <td>Name&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['nama_dokter']; ?></td>
                       </tr>
                       <tr>
                         <td>Date of Birth&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['tgl_lahir']; ?></td>
                       </tr>
                       <tr>
                         <td>Gender&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['gender']; ?></td>
                       </tr>
                       <tr>
                         <td>Address&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['alamat']; ?></td>
                       </tr>
                       <tr>
                         <td>Phone&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['no_hp']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Email&nbsp;&nbsp;:</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['email']; ?></td>
                       </tr>
                     </table>
                   </div>

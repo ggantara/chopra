@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Chopra |Booking</title>
-  <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+  <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
 
   <!-- Mendefinisikan Link CSS, Font, Bootsstrap, dsb -->
 

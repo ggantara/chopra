@@ -5,8 +5,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chopra | Pasien Member</title>
-  <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+  <title>Chopra | Patient Member</title>
+  <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
 
    <!-- 1. Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -28,7 +28,9 @@
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+                <?php 
+                    $row = $this->db->query("SELECT * FROM admin where username='".$this->session->username."'")->row_array();
+                ?>
 <!-- Mendefinisikan Headernya -->
 
 <div class="wrapper">
@@ -58,19 +60,19 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email admin -->
-                <span class="hidden-xs">Admin</span>
+                <span class="hidden-xs"><?php echo $row['name_admin']; ?></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
                   <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
                   <p>
-                    Admin
-                    <small>Admin</small>
+                    <?php echo $row['name_admin']; ?>
+                   
                   </p>
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="<?php echo base_url('cLoginAdmin/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -90,7 +92,7 @@
             <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Admin</p>
+            <p><?php echo $row['name_admin']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -100,8 +102,8 @@
         <li class="header">MENU</li>
 
         <!-- Halaman Dashboard -->
-        <li class="active">
-          <a href="">
+        <li>
+         <a href="<?=base_url()?>cAdmin">
             <i class="fa fa-dashboard"></i> 
             <span>Dashboard</span>
           </a>
@@ -120,14 +122,14 @@
           <ul class="treeview-menu">
             <!-- Untuk dokter -->
             <li>
-                <a href="#">
+                <a href="<?=base_url()?>cAdmin/hal_data_dokter">
                 <i class="fa fa-circle-o"></i>
                 Doctor
                </a>
             </li>
             <!-- Untuk apoteker -->
             <li>
-               <a href="#">
+               <a href="<?=base_url()?>cAdmin/hal_data_apoteker">
                 <i class="fa fa-circle-o">
               </i>
                Pharmacist
@@ -135,37 +137,29 @@
             </li>
             <!-- Untuk pasien -->
             <li>
-               <a href="#">
+               <a href="<?=base_url()?>cAdmin/hal_data_pasien">
                 <i class="fa fa-circle-o">
               </i>
-               Pasien
+               Patient
               </a>
             </li>
           </ul>
         </li>
 
-        
-
-        <!-- Halaman untuk data summary -->
-        <li>
-          <a href="#">
-            <i class="fa fa-clipboard"></i> <span>Pasien Registration</span>
-          </a>
-        </li>
 
         
 
         <!-- Halaman untuk data Schedule-->
         <li>
-          <a href="#">
-            <i class="fa fa-calendar"></i> <span>Pasien Transaction</span>
+          <a href="<?=base_url()?>cAdmin/hal_data_transaksipasien">
+            <i class="fa fa-calendar"></i> <span>Patient Transaction</span>
           </a>
         </li>
 
         <!-- Halaman untuk Admin Map-->
         <li>
-          <a href="#">
-            <i class="fa fa-map-marker"></i> <span>Add Schedule</span>
+          <a href="<?=base_url()?>cAdmin/hal_data_schedule">
+            <i class="fa fa-map-marker"></i> <span>Schedule</span>
           </a>
         </li>
       </ul>
@@ -178,30 +172,11 @@
     <!-- Menampilkan kontent header yang mengandung Breadcrumb -->
     <section class="content-header">
       <h1>
-     Pasien
+      Patient
       </h1>
-
-
-      <!-- notif rubah password -->
-      <section class="content-header">
-          <div>
-            <?php
-              if($this->session->flashdata('sukseskatasandiUbah')){
-            ?>
-                <div class="alert alert-success fade in">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  New Password :   <strong style="font-size:18px;color:black;"><?php echo $sandi; ?></strong> 
-                </div>  
-            <?php
-              }
-            ?>
-          </div>
-        </section>
-
-
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Pasien</li>
+        <li class="active">Patient Member</li>
       </ol>
     </section>
 
@@ -237,6 +212,7 @@
                   <th>Name</th>
                   <th>Date of Birth</th>
                   <th>Letter</th>
+                  <th>Status</th>
                   <th>Change Password</th>
                   <th>Action</th>
                 </tr>
@@ -251,12 +227,22 @@
                        <td>
                          <a href="#" target="_blank"></a>
                        </td>
+                      <td>
+                     
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-success">Accept</button>
+                              
+            
+                            </div>
+
+                          
+
+                      </td>
                        <td>
                          <div class="btn-group">
                         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal" >Change</button>
                         </div>
                       </td>
-                
                       <td>
                         <div class="btn-group"> 
                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalview"><i class="glyphicon glyphicon-eye-open"></i></button>
@@ -279,8 +265,7 @@
   </div>
 
 
-
-     <!--modal change pass user-->
+<!--modal change pass user-->
  
   <div class="modal modal-default fade" id="modal" >
           <div class="modal-dialog">
@@ -306,7 +291,9 @@
             </div>
           </div>
         </div>
+      </div>
         
+     
      <!--modal view-->
 
 <div class="modal fade" id="modalview">

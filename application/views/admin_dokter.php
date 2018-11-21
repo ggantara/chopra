@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Chopra | Member Doctor</title>
-  <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+  <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
 
   <!-- Mendefinisikan Link CSS, Font, Bootsstrap, dsb -->
 
@@ -38,7 +38,9 @@
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+                <?php 
+                    $row = $this->db->query("SELECT * FROM admin where username='".$this->session->username."'")->row_array();
+                ?>
 <!-- Mendefinisikan Headernya -->
 
 <div class="wrapper">
@@ -68,19 +70,19 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email admin -->
-                <span class="hidden-xs">Admin</span>
+                <span class="hidden-xs"><?php echo $row['name_admin']; ?></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
                   <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
                   <p>
-                    Admin
-                    <small>Admin</small>
+                   <?php echo $row['name_admin']; ?>
+                    
                   </p>
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                      <a href="<?php echo base_url(''); ?>" class="btn btn-default btn-flat">Sign out</a>
+                      <a href="<?php echo base_url('cLoginAdmin/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -100,7 +102,7 @@
             <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Admin</p>
+            <p><?php echo $row['name_admin']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -111,7 +113,7 @@
 
         <!-- Halaman Dashboard -->
         <li class="active">
-          <a href="">
+         <a href="<?=base_url()?>cAdmin">
             <i class="fa fa-dashboard"></i> 
             <span>Dashboard</span>
           </a>
@@ -130,14 +132,14 @@
           <ul class="treeview-menu">
             <!-- Untuk dokter -->
             <li>
-                <a href="#">
+                <a href="<?=base_url()?>cAdmin/hal_data_dokter">
                 <i class="fa fa-circle-o"></i>
                 Doctor
                </a>
             </li>
             <!-- Untuk apoteker -->
             <li>
-               <a href="#">
+               <a href="<?=base_url()?>cAdmin/hal_data_apoteker">
                 <i class="fa fa-circle-o">
               </i>
                Pharmacist
@@ -145,10 +147,10 @@
             </li>
             <!-- Untuk pasien -->
             <li>
-               <a href="#">
+               <a href="<?=base_url()?>cAdmin/hal_data_pasien">
                 <i class="fa fa-circle-o">
               </i>
-               Pasien
+               Patient
               </a>
             </li>
           </ul>
@@ -156,26 +158,19 @@
 
         
 
-        <!-- Halaman untuk data summary -->
-        <li>
-          <a href="#">
-            <i class="fa fa-clipboard"></i> <span>Pasien Registration</span>
-          </a>
-        </li>
-
         
 
         <!-- Halaman untuk data Schedule-->
         <li>
-          <a href="#">
-            <i class="fa fa-calendar"></i> <span>Pasien Transaction</span>
+          <a href="<?=base_url()?>cAdmin/hal_data_transaksipasien">
+            <i class="fa fa-calendar"></i> <span>Patient Transaction</span>
           </a>
         </li>
 
         <!-- Halaman untuk Admin Map-->
         <li>
-          <a href="#">
-            <i class="fa fa-map-marker"></i> <span>Add Schedule</span>
+          <a href="<?=base_url()?>cAdmin/hal_data_schedule">
+            <i class="fa fa-map-marker"></i> <span>Schedule</span>
           </a>
         </li>
       </ul>

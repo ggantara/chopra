@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Chopra |Transactions Pasien</title>
-  <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+  <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
 
   <!-- Mendefinisikan Link CSS, Font, Bootsstrap, dsb -->
 
@@ -44,7 +44,9 @@
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+                <?php 
+                    $row = $this->db->query("SELECT * FROM apoteker where username='".$this->session->username."'")->row_array();
+                ?>
 
 <!--action rubah sandi-->
         
@@ -82,20 +84,20 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email pengguna -->
-                <span class="hidden-xs">Apoteker Sinta</span>
+                <span class="hidden-xs">Pramascist <?php echo $row['nama_apoteker']; ?></span>
               </a>
 
               <ul class="dropdown-menu">
                 <li class="user-header">
                   <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
                   <p>
-                    Apoteker Sinta
+                    Pramascist <?php echo $row['nama_apoteker']; ?>
                     
                   </p>
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url(''); ?>" class="btn btn-default btn-flat">Sign out</a>
+                     <a href="<?php echo base_url('cLoginApoteker/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -115,7 +117,7 @@
             <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p> Apoteker Sinta</p>
+            <p> Pramascist <?php echo $row['nama_apoteker']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -126,7 +128,7 @@
 
           <!-- Halaman Profile-->
           <li >
-            <a href="#">
+            <a href="<?=base_url()?>cApoteker">
               <i class="fa fa-user"></i> 
               <span>Profile</span>
             </a>
@@ -134,13 +136,13 @@
 
           
           <li >
-            <a href="#">
+            <a href="<?=base_url()?>cApoteker/hal_data_obat">
               <i class="fa fa-calendar"></i> <span>Medicine</span>
             </a>
           </li>
           <li class="active">
-            <a href="#">
-              <i class="fa fa-calendar"></i> <span>Transactions Pasien</span>
+            <a href="<?=base_url()?>cApoteker/hal_data_transaksipasien">
+              <i class="fa fa-calendar"></i> <span>Transactions Patient</span>
             </a>
           </li>
 

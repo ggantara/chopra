@@ -5,8 +5,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chopra |Pasien Profile</title>
-  <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+  <title>Chopra |Patient Profile</title>
+  <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
 
   <!-- Mendefinisikan Link CSS, Font, Bootsstrap, dsb -->
 
@@ -89,7 +89,7 @@
                 <li class="user-header">
                   <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
                   <p>
-                    Sinta
+                    <?php echo $nama_pasien ?>
                     
                   </p>
                 </li>
@@ -115,7 +115,7 @@
             <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Sinta</p>
+            <p><?php echo $nama_pasien ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -126,7 +126,7 @@
 
           <!-- Halaman Profile-->
           <li class="active treeview">
-            <a href="#">
+            <a href="<?=base_url()?>cPasien">
               <i class="fa fa-user"></i> 
               <span>Profile</span>
             </a>
@@ -156,7 +156,7 @@
       <!-- Menampilkan kontent header yang mengandung Breadcrumb -->
       <section class="content-header">
         <h1>
-          Pasien Profile
+          Patient Profile
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -211,7 +211,7 @@
                     <h4><b>Information:</b></h4>
                     <table>
                       <tr>
-                        <td>Pasien Name :&nbsp;&nbsp;</td>
+                        <td>Patient Name :&nbsp;&nbsp;</td>
                         <td>&nbsp;&nbsp;</td>
                       </tr>
                       <tr>

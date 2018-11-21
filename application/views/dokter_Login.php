@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chopra | Doctor Login</title>
-    <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+    <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
     <link rel="stylesheet" href="<?php echo base_url('/assets/bootstrap/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('/assets/css/-Login-form-Page-BS4-.css');?>">
     <link rel="stylesheet" href="<?php echo base_url('/assets/css/styles.css');?>">
@@ -18,34 +18,37 @@
                 <div class="justify-content-center align-items-center align-content-center m-auto w-lg-75 w-xl-50" style="width:204px;margin:0px 0px 0px 0px;margin-right:100px;margin-top:20px;margin-bottom:20px;margin-left:100px;">
 
                     <h4 class="text-center text-info font-weight-light mb-5">
-                        <img src = "<?php echo base_url('assets/img/logougm.png');?>" style="width:40px;height:40px;margin-bottom:0px;">Child Care Clinic
+                        Child Care Clinic
                     </h4>
                     
-                    <form method="post" action="<?php echo base_url(''); ?>">
+                    <form method="post" action="<?=base_url('cLoginDokter/verify');?>">
                         <div class="form-group">
                             <label class="text-secondary">Username Doctor</label>
-                            <input class="form-control" name ="email" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$">
+                            <input class="form-control" name ="username" type="text" required="" >
                         </div>
                         <div class="form-group">
                             <label class="text-secondary">Password Doctor</label>
-                            <input class="form-control" name="pass" type="password" required="">
+                            <input class="form-control" name="password" type="password" required="">
                         </div>
                             <button class="btn btn-primary mt-2" type="submit">Log In</button>
-                        <!-- <?php
+                      <?php
                             if($this->session->flashdata('error')){
-                                echo "<br><p><font color='#FF0000'><b><small>Email or password is wrong!</small></b></font></p>";
+                                echo "<br><p><font color='#FF0000'><b><small>Username or password is wrong!</small></b></font></p>";
                             }
-                        ?> -->
+                        ?>
                     </form>
 
                     <p class="mt-3 mb-0">
                         <a href="#" class="text-info small" data-toggle="modal" data-target="#modal-default">Forgot your email or password?</a>
                     </p>
+                    <p class="mt-3 mb-0">
+                        <a href="<?php echo base_url()?>cLandingPage" class="text-info small">Back to Home</a>
+                    </p>
                     
                 </div>
             </div>
 
-            <div class="col-lg-6 d-flex align-items-end" id="bg-block" style="background-size:cover;background-position:center center;background-image:url(&quot;assets/img/6.jpg&quot;);">
+            <div class="col-lg-6 d-flex align-items-end" id="bg-block" style="background-size:cover;background-position:center center;background-image:url(&quot;assets/img/c4.jpg&quot;);">
                 <p class="ml-auto small text-dark mb-2">
                     <em>Chopra | Child Care Clinic&nbsp;</em><br>
                 </p>

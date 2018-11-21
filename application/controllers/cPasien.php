@@ -32,11 +32,11 @@ class CPasien extends CI_Controller {
 	}
 	
 //ambil data profil
-	public function hal_profil_peminjam(){
+	public function hal_profil_pasien(){
 		$data = $this->session();
 		$data['error'] = "";
-		$data['peminjam'] = $this->mPeminjam->get_data_peminjam();
-		$this->load->view('Peminjam/vPeminjam',$data);
+		$data['pasien'] = $this->mPasien->get_data_pasien();
+		$this->load->view('pasien_profile',$data);
 	}
 
 

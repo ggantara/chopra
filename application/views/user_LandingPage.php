@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Chopra | Landing Page</title>
-  <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+  <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -78,13 +78,13 @@
                   </ol>
                   <div class="carousel-inner">
                   <div class="item active">
-                    <img class="img-responsive" alt="First slide" src="assets/img/2.jpg">
+                    <img class="img-responsive" alt="First slide" src="assets/img/c6.jpg">
                   </div>
                   <div class="item">
-                       <img class="img-responsive" alt="Second slide" src="assets/img/2.jpg">
+                       <img class="img-responsive" alt="Second slide" src="assets/img/c6.jpg">
                   </div>
                   <div class="item">
-                     <img class="img-responsive" alt="Third slide" src="assets/img/2.jpg"> 
+                     <img class="img-responsive" alt="Third slide" src="assets/img/c6.jpg"> 
                   </div>
                   </div>
                   <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">

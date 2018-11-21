@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Chopra | Pasien Registration</title>
-  <link rel="icon" href="assets/img/LogoIA.png" type="image/gif">
+  <title>Chopra | Patient Registration</title>
+  <link rel="icon" href="assets/img/chopra.jpg" type="image/gif">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -75,7 +75,7 @@
                 <div class="col-md-12">
                 <div class="small-box" style="background-color: #e8c86b; margin-left: 10px; margin-top: 10px; margin-right: 10px;">
                   <div class="inner">
-                    <h3>Pasien</h3>
+                    <h3>Patient</h3>
                     <p>Registration</p>
                   </div>
                 <div class="icon">
@@ -96,7 +96,7 @@
                       <form method="post" action="<?=base_url()?>cRegistrasiPasien/registrasi">
 
                         <div class="form-group">
-                            <label>ID Number Pasien:</label>
+                            <label>ID Number Patient:</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-pencil"></i>
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Pasien Name:</label>
+                            <label>Patient Name:</label>
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-pencil"></i>

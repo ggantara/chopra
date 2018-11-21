@@ -42,7 +42,7 @@ class CLoginPasien extends CI_Controller {
 		}else{
 			$this->session->set_flashdata('GagalLogin',true);
 			$data['username'] = $username;
-			$this->load->view('user_Login',$data);
+			$this->load->view('pasien_Registrasi',$data);
 		}
 	}
 
