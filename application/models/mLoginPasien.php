@@ -6,10 +6,21 @@
         	parent::__construct();
     	}
 
-		public function login($username,$password){
-			$hasil = $this->db->query("select * from pasien where username='$username' and password=md5('$password')");
-			return $hasil;
-		}
+    	function cek_login($username, $password){
+		$query = $this->db->query("select * from pasien where username='$username' and password=md5('$password')");
+		return $query;
+	}
+	public function cekLogin(){
+      	if($this->session->userdata('login'))
+        return true;
+
+        return false;
+    }
+
+		// public function login($username,$password){
+		// 	$hasil = $this->db->query("select * from pasien where username='$username' and password=md5('$password')");
+		// 	return $hasil;
+		// }
 
 		// public function selectByEmail($email){
 		// 	$hasil = $this->db->query("select * from peminjam where email='$email'");

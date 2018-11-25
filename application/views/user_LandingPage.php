@@ -99,7 +99,7 @@
                   </div>
 
                   <center>
-                    <a href="<?php echo base_url(''); ?>">
+                     <a href="<?php echo base_url() ?>cPasien/hal_booking">
                     <button type="button" class="btn btn-block btn-primary btn-lg" style="width: auto;"><i class="fa fa-calendar"> Queue Reservation Schedule</i></button>
                     </a>
                   </center>
@@ -117,10 +117,10 @@
                       <h4 class="modal-title">Rule of Reservation</h4>
                     </div>
                     <div class="modal-body">
-                      <p>1. Click button "Room Reservation Schedule" to show schedule room used.</p>
-                      <p>2. Click button booking in page "Room Reservation Shedule".</p>
-                      <p>3. You can't do procedure reservation before you login inthis system. If you don't have account, you can sign up your account.</p>
-                      <p>4. To sign up your account, we have 3 category user. You can sign up only 1 category you must choice. The rule of categories will be declare in there.</p>
+                      <p>1. Pasien yang akan checkup harus memiliki akun pasien</p>
+                      <p>2. Toleransi keterlambatan maksimal 10 menit.</p>
+                      <p>3. Jika nomor antrian yang dipanggil tidak ada maka dilanjutkan terlebih dahulu ke nomor antrian selanjutnya</p>
+                      <p>4. Nomor antrian yang tertunda dipanggil setelah nomor antrian yang berlangsung sudah selesai</p>
                     </div>
                   </div>
                 </div>

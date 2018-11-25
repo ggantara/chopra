@@ -204,7 +204,7 @@
                             <div class="input-group">
                               
                                 <input type="file" id="exampleInputFile" name="kk">
-                                <p class="help-block">Input file .pdf</p>
+                                <p class="help-block">Input file .pdf|jpg|jpeg|png</p>
                             </div>
                         </div> -->
                         
@@ -237,7 +237,7 @@
                       <div class="modal-body" style="text-align: center;">
                         <br><br>
                         <h4>Registration Successfully !</h4>
-                        <h5>Please login <b>after admin activited your account</b></h5>
+                        <h5>Please login </h5>
                         <h5>Or calling 0987654321</h5>
                       </div> 
                       <div class="modal-footer">

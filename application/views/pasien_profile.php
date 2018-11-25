@@ -44,7 +44,9 @@
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+                <?php 
+                    $row = $this->db->query("SELECT * FROM pasien where username='".$this->session->username."'")->row_array();
+                ?>
 
 <!--action rubah sandi-->
         
@@ -80,22 +82,22 @@
             <li class="dropdown user user-menu">
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
+                <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email pengguna -->
-                <span class="hidden-xs">Sinta</span>
+                <span class="hidden-xs">Patient <?php echo $row['nama_pasien']; ?></span>
               </a>
 
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
                   <p>
-                    <?php echo $nama_pasien ?>
+                    Patient <?php echo $row['nama_pasien']; ?>
                     
                   </p>
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url(''); ?>" class="btn btn-default btn-flat">Sign out</a>
+                     <a href="<?php echo base_url('cLoginPasien/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -112,10 +114,10 @@
         <!-- Sidebar panel User -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+            <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p><?php echo $nama_pasien ?></p>
+            <p>Patient <?php echo $row['nama_pasien']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -134,14 +136,14 @@
 
           <!-- Halaman Schedule -->
           <li>
-            <a href="#">
+            <a href="<?=base_url()?>cPasien/hal_booking_pasien">
               <i class="fa fa-calendar"></i> <span>Booking</span>
             </a>
           </li>
 
           <!-- Halaman Reservation History -->
           <li>
-            <a href="#">
+            <a href="<?=base_url()?>cPasien/hal_antrian">
               <i class="fa fa-calendar-check-o"></i> <span>Queue</span>
             </a>
           </li>
@@ -163,6 +165,7 @@
           <li class="active">Profile</li>
         </ol>
       </section>
+
 
       <section class="content-header">
           <div>
@@ -201,7 +204,7 @@
               <div class="container">
                 <div class="row">
                 <div class="col-md-4" style="margin-left: 10px; margin-right: 10px;">
-                  <center><img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image" class="rounded float-left">
+                  <center><img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image" class="rounded float-left">
                   </center> 
                   <br>
                 </div>
@@ -211,28 +214,32 @@
                     <h4><b>Information:</b></h4>
                     <table>
                       <tr>
-                        <td>Patient Name :&nbsp;&nbsp;</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>KK&nbsp;&nbsp;:</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['id_pasien']; ?></td>
                       </tr>
                       <tr>
-                        <td>KK&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>Patient Name :&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['nama_pasien']; ?></td>
+                      </tr>
+                      <tr>
+                        <td>Mother Name :&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['nama_ibu']; ?></td>
                       </tr>
                       <tr>
                         <td>Date of Birth&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['tgl_lahir']; ?></td>
                       </tr>
                       <tr>
                         <td>Gender&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['jk']; ?></td>
                       </tr>
                       <tr>
                         <td>Address&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['alamat']; ?></td>
                       </tr>
                       <tr>
                         <td>Phone&nbsp;&nbsp;:</td>
-                        <td>&nbsp;&nbsp;</td>
+                        <td>&nbsp;&nbsp;<?php echo $row['no_hp']; ?></td>
                       </tr>
                     </table>
                   </div>
@@ -243,7 +250,7 @@
 
                       <ul class="dropdown-menu" role="menu">
                               <li><a href="#" data-toggle="modal" data-target="#modal-editpass">Change Password</a></li>
-                              <li><a href="#" data-toggle="modal" data-target="#modal-editpass">Change Profile</a></li>
+                              
                       </ul>
 
                        
@@ -273,10 +280,10 @@
                 
         <!--Form input change pass-->
        
-                  <form  method="post" action="<?=base_url()?>" data-toggle="validator">
+                  <form  method="post" action="<?=base_url()?>cPasien/ubahKataSandi" data-toggle="validator">
                   <div class="box-body">
-                    <input type="hidden" name="email" value="">
-                  <input type="hidden" name="pass" value="">
+                    <input type="hidden" name="id_pasien" value="<?php echo $row['id_pasien']; ?>">
+                  <input type="hidden" name="password" value="<?php echo $row['password']; ?>">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Old Password: </label>
                     <div class="input-group">
@@ -294,7 +301,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Retype New Password: </label>
-                    <input type="password" class="form-control" placeholder="Enter Retype New Password" name="repass" required="" data-match="#inputPassword" data-match-error="Whoops, sandi tidak cocok">
+                    <input type="password" class="form-control" placeholder="Enter Retype New Password" name="repass" required="" data-match="#inputPassword" data-match-error="Whoops, password not match">
                   </div>
                   </div>
                   

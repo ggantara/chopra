@@ -18,6 +18,9 @@
     		$hasil = $this->db->query("select * from periksa");
     		return $hasil;
     	}
+        public function ubahSandi($id_apoteker,$newpass){
+        $this->db->query("update apoteker set password=md5('$newpass') where id_apoteker='$id_apoteker'");
+    }
 
         
 

@@ -68,13 +68,13 @@
           <li class="dropdown user user-menu">
             
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
+                <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email admin -->
                 <span class="hidden-xs"><?php echo $row['name_admin']; ?></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
                   <p>
                     <?php echo $row['name_admin']; ?>
                    
@@ -99,7 +99,7 @@
       <!-- Sidebar panel User -->
       <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+            <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
             <p><?php echo $row['name_admin']; ?></p>
@@ -186,7 +186,7 @@
       Schedule
       </h1>
 
-<!-- notif rubah password -->
+<!-- notif  -->
       <section class="content-header">
           <div>
             <?php
@@ -197,10 +197,48 @@
                   New Password :   <strong style="font-size:18px;color:black;"><?php echo $sandi; ?></strong> 
                 </div>  
             <?php
-              }
+              }else if($this->session->flashdata('berhasilHapusPeminjam')){
             ?>
+            <div class="alert alert-success fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                   <strong>Successfully delete data !</strong>
+                </div>
+            <?php
+              }else if($this->session->flashdata('berhasil')){
+            ?>
+                <div class="alert alert-success fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Change data <strong>Success !</strong>
+                </div>
+            <?php 
+              }else if($this->session->flashdata('tidakBerhasil')){
+            ?>
+                <div class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Change data <strong>Failed !</strong>
+                </div>
+            <?php
+              }else if($this->session->flashdata('IdPeminjamAda')){
+            ?>
+                <div class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                 Change data <strong>Failed !</strong> Id number schedule already exists
+                </div>
+            
+             <?php
+              }else if($this->session->flashdata('namaAdaUbah')){
+            ?>
+                <div class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Change data <strong>Failed !</strong> Schedule already exists
+                </div>
+
+              <?php
+              }
+            ?>  
           </div>
         </section>
+
 
 
 
@@ -211,7 +249,33 @@
       </ol>
     </section>
 
-   
+   <!--peringatan tmabh -->
+        <section class="content-header">
+          <div>
+            
+              
+            <?php
+              if($this->session->flashdata('suksestambah')){
+            ?>
+                <div class="alert alert-success fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Added Schedule <strong>Successfully!</strong>
+                </div>
+            
+            <?php
+              }else if($this->session->flashdata('gagaltambah')){
+            ?>
+                <div class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Added Schedule <strong>Failed !</strong> 
+                </div>
+           
+           
+            <?php
+              }
+            ?>
+          </div>
+        </section>
 
 
 
@@ -245,28 +309,37 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
+                 
                 <tr>
-                  <th>No</th>
+                 <!-- <th>No</th> -->
+                  <th>Queue</th>
                   <th>Time</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                
+                 <?php
+                        $i=0;
+                        foreach ($schedule->result() as $row) {
+                          $i++;
+                      ?>
                     <tr>
-                      <td></td>
-                      <td></td>
+                      <!-- <td><?php echo $i;?></td> -->
+                      <td><?php echo $row->no_antri; ?></td>
+                      <td><?php echo $row->waktu; ?></td>
                       
                       <td>
                       
                          
-                          <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#modal-edit"><i class="glyphicon glyphicon-pencil"></i></button>
-                          <div class="btn-group">  
-                          <a href = "#"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete"><i class="glyphicon glyphicon-trash"></i></button></a>
-                          </div>
+                           <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#myModal3<?php echo $row->id_jadwal?>"><i class="glyphicon glyphicon-pencil"></i></button>
+                            
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $row->id_jadwal?>"><i class="glyphicon glyphicon-trash"></i></button>
+                          
                       </td>
                     </tr>
-                  
+                  <?php
+                      }
+                    ?>
                 </tbody>
               </table>
             </div>
@@ -279,14 +352,96 @@
 
 
 
+  <!-- modal ubah data -->
+      <?php
+        $i=0;
+        foreach ($schedule->result() as $row) {
+        $i++;
+      ?>
+        
+        <div class="modal fade" id="myModal3<?php echo $row->id_jadwal?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title" id="myModalLabel">Change Data Schedule <?php echo $row->waktu;?></h4></center>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="<?=base_url()?>cAdmin/ubahDataJadwal" data-toggle="validator">
+                   <input type="hidden" name="idAwal" value="<?php echo $row->no_antri?>">
+                  <input type="hidden" name="id_jadwal" value="<?php echo $row->id_jadwal;?>">
+                  <input type="hidden" name="nama_pengguna_awal" value="<?php echo $row->waktu;?>">
+                 <div class="form-group">
+                    <label>Queue</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-credit-card"></i>
+                      </div>
+                       <input type="text" class="form-control" value="<?php echo $row->no_antri?>" name="no_antri" placeholder="Example : 1" required autofocus>
+                      </div>
+                  </div><!-- /.form-group -->
+                  <div class="form-group">
+                    <label>Time</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-credit-card"></i>
+                      </div>
+                       <input type="text" class="form-control" value="<?php echo $row->waktu?>" name="waktu" placeholder="Example : 08.00-08.15 WIB" required autofocus>
+                      </div>
+                  </div><!-- /.form-group -->
+                  
+              
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Change</button>
+                  </div>         
+                </form>
+              </div>          
+            </div>
+          </div>
+        </div>
+        
+      <?php
+        }
+      ?>
 
 
-  
 
 
-<!--modal add PUI-->
+
+   <!--modal hapus data-->
+      <?php
+        foreach ($schedule->result() as $row) {
+      ?>
+        <div class="modal fade" id="hapus<?php echo $row->id_jadwal?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title" id="myModalLabel">Warning !</h4></center>
+              </div>
+              <div class="modal-body">
+                  <form method="post" action="<?=base_url()?>cAdmin/hapusJadwal" data-toggle="validator">
+                    <input type="hidden" name="id_jadwal" value="<?php echo $row->id_jadwal?>">
+                    <center><p>Are you sure delete data shedule <?php echo $row->waktu;?> ?</p></center>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Yes</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                  </form>
+            </div>          
+          </div>
+        </div>
+        </div>
+      <?php
+        }
+      ?>
+
+
+
+<!--modal add -->
    <div class="modal fade" id="modal-add">
-     <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="<?php echo base_url('cAdmin/addSchedule')?>" enctype="multipart/form-data">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -298,19 +453,25 @@
                 <div class="box box-primary">
                   <form role="form">
                   <div class="box-body">
+                    <div class="form-group">
+                    <label for="exampleInputIdentity1">Queue </label>
+                    <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-credit-card"></i>
+                    </div>
+                    <input type="number" class="form-control" placeholder="Example : 1" name="no_antri" required="">
+                    </div>
+                  </div>
                    <div class="form-group">
                     <label for="exampleInputIdentity1">Time </label>
                     <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-credit-card"></i>
                     </div>
-                    <input type="text" class="form-control" placeholder="Time" name="time" required="">
+                    <input type="text" class="form-control" placeholder="Example : 08.00-08.15 WIB" name="waktu" required="">
                     </div>
                   </div>
                   
-                  
-                  
-            
                   </div>
                   </form>
                   </div>
@@ -323,25 +484,6 @@
           </div>
         </form>
     </div>
-
-     <div class="modal fade" id="modal-default">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body">
-                <p>Add Success&hellip; Password ... Username ...</p>
-              </div>
-              <div class="modal-footer">
-               <a href="">
-                <button type="button" class="btn btn-default pull-left" data="modal">Oke</button>
-               </a>
-              </div>
-            </div>
-          </div>
-      </div>
 
 
       

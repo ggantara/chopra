@@ -82,14 +82,14 @@
             <li class="dropdown user user-menu">
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
+                <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email pengguna -->
                 <span class="hidden-xs">Pramascist <?php echo $row['nama_apoteker']; ?></span>
               </a>
 
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
                   <p>
                     Pramascist <?php echo $row['nama_apoteker']; ?>
                     
@@ -114,7 +114,7 @@
         <!-- Sidebar panel User -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+            <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
             <p> Pramascist <?php echo $row['nama_apoteker']; ?></p>

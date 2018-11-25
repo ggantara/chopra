@@ -44,7 +44,9 @@
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+                <?php 
+                    $row = $this->db->query("SELECT * FROM pasien where username='".$this->session->username."'")->row_array();
+                ?>
 
 <!--action rubah sandi-->
         
@@ -80,22 +82,22 @@
             <li class="dropdown user user-menu">
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
+                <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email pengguna -->
-                <span class="hidden-xs">Sinta</span>
+                <span class="hidden-xs">Patient <?php echo $row['nama_pasien']; ?></span>
               </a>
 
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
                   <p>
-                    Sinta
+                    Patient <?php echo $row['nama_pasien']; ?>
                     
                   </p>
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url(''); ?>" class="btn btn-default btn-flat">Sign out</a>
+                     <a href="<?php echo base_url('cLoginPasien/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -112,10 +114,10 @@
         <!-- Sidebar panel User -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+            <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Sinta</p>
+            <p>Patient <?php echo $row['nama_pasien']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -126,7 +128,7 @@
 
           <!-- Halaman Profile-->
           <li>
-            <a href="#">
+            <a href="<?=base_url()?>cPasien">
               <i class="fa fa-user"></i> 
               <span>Profile</span>
             </a>
@@ -134,14 +136,14 @@
 
           <!-- Halaman Schedule -->
           <li>
-            <a href="#">
+            <a href="<?=base_url()?>cPasien/hal_booking_pasien">
               <i class="fa fa-calendar"></i> <span>Booking</span>
             </a>
           </li>
 
           <!-- Halaman Reservation History -->
           <li  class="active treeview">
-            <a href="#">
+            <a href="<?=base_url()?>cPasien/hal_antrian">
               <i class="fa fa-calendar-check-o"></i> <span>Queue</span>
             </a>
           </li>

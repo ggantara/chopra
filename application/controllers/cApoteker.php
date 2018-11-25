@@ -50,6 +50,30 @@ class CApoteker extends CI_Controller {
     $this->load->view('apoteker_transaksipasien',$data);
   }
 
+  public function ubahKataSandi(){
+    $id_apoteker = $this->input->post('id_apoteker');
+    $password = $this->input->post('password');
+    $oldpass = $this->input->post('oldpass');
+    $newpass = $this->input->post('newpass');
+    $repass = $this->input->post('repass');
+    
+    if(md5($oldpass) == $password){
+      if($newpass == $repass){
+        $this->mApoteker->ubahSandi($id_apoteker,$newpass);
+        $this->session->set_flashdata('kataSandiBerhasil',true);
+     $this->load->view('apoteker_profile');
+       //redirect('CApoteker');
+      }else{
+        $this->session->set_flashdata('kataSandiTidakCocok',true);
+        $this->load->view('apoteker_profile');
+        //redirect('CApoteker');
+      }
+    }else{
+      $this->session->set_flashdata('kataSandiGagal',true);
+      $this->load->view('apoteker_profile');
+       //redirect('CApoteker');
+    }
+  }
   
 
 

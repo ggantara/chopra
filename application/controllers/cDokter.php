@@ -50,6 +50,31 @@ class CDokter extends CI_Controller {
     $this->load->view('dokter_periksa',$data);
   }
 
+  public function ubahKataSandi(){
+    $id_dokter = $this->input->post('id_dokter');
+    $password = $this->input->post('password');
+    $oldpass = $this->input->post('oldpass');
+    $newpass = $this->input->post('newpass');
+    $repass = $this->input->post('repass');
+    
+    if(md5($oldpass) == $password){
+      if($newpass == $repass){
+        $this->mDokter->ubahSandi($id_dokter,$newpass);
+        $this->session->set_flashdata('kataSandiBerhasil',true);
+       $this->load->view('dokter_profile');
+       //redirect('cPasien');
+      }else{
+        $this->session->set_flashdata('kataSandiTidakCocok',true);
+        $this->load->view('dokter_profile');
+        //redirect('cPasien');
+      }
+    }else{
+      $this->session->set_flashdata('kataSandiGagal',true);
+      $this->load->view('dokter_profile');
+       //redirect('cPasien');
+    }
+  }
+
   
 
 

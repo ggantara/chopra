@@ -38,7 +38,7 @@
             <ul class="nav navbar-nav">
               <!-- Login -->
               <li class="dropdown user user-menu">
-                <a href="<?php echo base_url(''); ?>">
+                <a href="<?php echo base_url() ?>cLoginPasien">
                   <i class="glyphicon glyphicon-log-in"></i>
                   <span class="hidden-xs">Login</span>
                 </a>
@@ -68,40 +68,44 @@
                 <section class="content">
           <div class="row">
            <section class="content">
+        
             <div class="box box-default">
               <div class="box-body" >
                   <div class="row" style="margin-left: 10px; margin-right: 10px;" >
                     <div class="col-md-12">
-                      <center><strong><h2>Select Your Check Shedule
+                      <center><strong><h2>Select Your Check Up Shedule
                       </h2></strong></center> 
                       <br>
                       <center>
                         <!-- radio -->
+                        <form method="post" action="<?php echo base_url('cPasien/booking')?>" enctype="multipart/form-data">
                 <div class="form-group">
+                  
                   <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                      08.00-08.15 WIB
-                    </label>
+                    
+              
+
+                        <?php
+                          foreach ($schedule->result() as $row) {
+                        ?>
+                          <input type="radio" name="waktu[]" value="<?php echo $row->id_jadwal;?>">&nbsp;&nbsp;<?php echo $row->waktu;?><br>
+                        <?php
+                          }
+                        ?>
+                    
+                   
                   </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                       08.15-08.30 WIB
-                    </label>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-                      08.30-08.45 WIB
-                    </label>
-                  </div>
+                  
                 </div>
+                 </form>
                 <div class="col-md-5">
                             
                 </div>
+               
                 <div class="col-md-2">
-                       <button type="submit" class="btn btn-block btn-primary" style="margin-top: 24px;">Choose</button>       
+                  <a href="<?php echo base_url() ?>cLoginPasien">
+                       <button type="submit" class="btn btn-block btn-primary" style="margin-top: 24px;">Choose</button> 
+                  </a>      
                 </div>
                 <div class="col-md-5">
                            
@@ -110,7 +114,9 @@
                     </div>
                 </div>
               </div>
+
             </div>
+               
           </section>
         </div>
       </section>

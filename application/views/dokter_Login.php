@@ -39,7 +39,7 @@
                     </form>
 
                     <p class="mt-3 mb-0">
-                        <a href="#" class="text-info small" data-toggle="modal" data-target="#modal-default">Forgot your email or password?</a>
+                        <a href="#" class="text-info small" data-toggle="modal" data-target="#modal-default">Forgot your username or password?</a>
                     </p>
                     <p class="mt-3 mb-0">
                         <a href="<?php echo base_url()?>cLandingPage" class="text-info small">Back to Home</a>

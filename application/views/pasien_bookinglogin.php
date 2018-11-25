@@ -44,7 +44,9 @@
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-
+                <?php 
+                    $row = $this->db->query("SELECT * FROM pasien where username='".$this->session->username."'")->row_array();
+                ?>
 
 <!--action rubah sandi-->
         
@@ -80,14 +82,14 @@
             <li class="dropdown user user-menu">
 
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
+                <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email pengguna -->
-                <span class="hidden-xs">Sinta</span>
+                <span class="hidden-xs">Patient <?php echo $row['nama_pasien']; ?></span>
               </a>
 
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
                   <p>
                     Sinta
                     
@@ -95,7 +97,7 @@
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url(''); ?>" class="btn btn-default btn-flat">Sign out</a>
+                     <a href="<?php echo base_url('cLoginPasien/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -112,10 +114,10 @@
         <!-- Sidebar panel User -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+            <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Sinta</p>
+            <p>Patient <?php echo $row['nama_pasien']; ?></p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -126,7 +128,7 @@
 
           <!-- Halaman Profile-->
           <li>
-            <a href="#">
+            <a href="<?=base_url()?>cPasien">
               <i class="fa fa-user"></i> 
               <span>Profile</span>
             </a>
@@ -134,14 +136,14 @@
 
           <!-- Halaman Schedule -->
           <li class="active treeview">
-            <a href="#">
+            <a href="<?=base_url()?>cPasien/hal_booking_pasien">
               <i class="fa fa-calendar"></i> <span>Booking</span>
             </a>
           </li>
 
           <!-- Halaman Reservation History -->
           <li>
-            <a href="#">
+             <a href="<?=base_url()?>cPasien/hal_antrian">
               <i class="fa fa-calendar-check-o"></i> <span>Queue</span>
             </a>
           </li>
@@ -167,34 +169,34 @@
  
 
       <section class="content">
+        <form method="post" action="<?php echo base_url('cPasien/booking')?>" enctype="multipart/form-data">
             <div class="box box-default">
               <div class="box-body" >
                   <div class="row" style="margin-left: 10px; margin-right: 10px;" >
                     <div class="col-md-12">
-                      <center><strong><h2>Select Your Check Shedule
+                      <center><strong><h2>Select Your Check Up Shedule
                       </h2></strong></center> 
                       <br>
                       <center>
                         <!-- radio -->
                 <div class="form-group">
+                  
                   <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-                      08.00-08.15 WIB
-                    </label>
+                    
+              
+
+                        <?php
+                          foreach ($schedule->result() as $row) {
+                        ?>
+                          <input type="radio" name="waktu[]" value="<?php echo $row->id_jadwal;?>">&nbsp;&nbsp;<?php echo $row->waktu;?><br>
+                        <?php
+                          }
+                        ?>
+                      <!-- <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                       08.15-08.30 WIB -->
+                   
                   </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                       08.15-08.30 WIB
-                    </label>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-                      08.30-08.45 WIB
-                    </label>
-                  </div>
+                  
                 </div>
                 <div class="col-md-5">
                             
@@ -209,9 +211,12 @@
                     </div>
                 </div>
               </div>
+
             </div>
+               </form>
           </section>
         </div>
+   
       </section>
       </div>
         

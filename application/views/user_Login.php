@@ -31,21 +31,26 @@
                         Child Care Clinic
                     </h4>
                     
-                    <form  action="<?=base_url()?>cLoginPasien/cek_login" method="post">
+                   <form method="post" action="<?=base_url('cLoginPasien/verify');?>">
                         <div class="form-group">
                             <label class="text-secondary">Username Patient</label>
-                            <input class="form-control" name ="username" type="text" autofocus required value="<?php if($username != null){echo $username;}?>" >
+                            <input class="form-control" name ="username" type="text"  required="" >
                         </div>
                         <div class="form-group">
                             <label class="text-secondary">Password Patient</label>
                             <input class="form-control" name="password" type="password" required="">
                         </div>
                             <button class="btn btn-primary mt-2" type="submit">Log In</button>
+                            <?php
+                            if($this->session->flashdata('error')){
+                                echo "<br><p><font color='#FF0000'><b><small>Username or password is wrong!</small></b></font></p>";
+                            }
+                        ?>
                      
                     </form>
 
                     <p class="mt-3 mb-0">
-                        <a href="#" class="text-info small" data-toggle="modal" data-target="#modal-default">Forgot your email or password?</a>
+                        <a href="#" class="text-info small" data-toggle="modal" data-target="#modal-default">Forgot your username or password?</a>
                     </p>
                     <p class="mt-3 mb-0">
                         <a href="<?php echo base_url()?>cRegistrasiPasien" class="text-info small">Don't have account?</a>

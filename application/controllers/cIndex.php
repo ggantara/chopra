@@ -26,7 +26,7 @@ class CIndex extends CI_Controller {
 		$data['alamat'] =$this->session->userdata('alamat');
 		$data['username'] =$this->session->userdata('username');
 		$data['password'] =$this->session->userdata('password');
-		$data['no_kk'] =$this->session->userdata('no_kk');
+		$data['scan'] =$this->session->userdata('scan');
 		
 		return $data;
 	}

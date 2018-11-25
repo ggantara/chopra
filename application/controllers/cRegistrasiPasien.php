@@ -20,6 +20,8 @@ class CRegistrasiPasien extends CI_Controller {
 		$data['email'] = null;
 		$data['alamat'] = null;
 		$data['username'] = null;
+		$data['scan'] = null;
+
 		
 		$this->load->view("pasien_Registrasi",$data);
 	}
@@ -37,15 +39,21 @@ class CRegistrasiPasien extends CI_Controller {
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		
-		//$this->upload->initialize($config);
+		// $config['upload_path']          = './scan/';
+		// $config['allowed_types']        = 'pdf';
+		// $config['max_size']             = 0;
+		
+ 
+		// $this->upload->initialize($config);
  
 		// if ( ! $this->upload->do_upload('kk')){
 		// 	$error = array('error' => $this->upload->display_errors());
 		// 	$this->load->view('pasien_Registrasi', $error);
 		// }else{
 		// 	$data = array('upload_data' => $this->upload->data());
-		// 	$scan = base_url()."scan/kk/". $this->upload->data()['file_name'];
+		// 	$scan = base_url()."scan/". $this->upload->data()['file_name'];
 		// }
+		
 	
 
 		$cekid_pasien = $this->mPasien->cekid_pasien($id_pasien);
@@ -54,17 +62,19 @@ class CRegistrasiPasien extends CI_Controller {
 			if($ceknama_pasien->num_rows() == null){
 				// $this->mPasien->registrasi($id_pasien,$nama_pasien,$tgl_lahir,$jk,$nama_ibu,$no_hp,$email,$alamat,$username,$password,$kk);
 				$user_data = array(
-				'id_pasien' => $id_pasien,
-				'nama_pasien' => $nama_pasien,
-				'tgl_lahir' => $tgl_lahir,
-				'jk' => $jk,
-				'nama_ibu' => $nama_ibu,
-				'no_hp' => $no_hp,
-				'email' => $email,
-				'alamat' => $alamat,
-				'username' => $username,
-				'password' => $password,
-				// 'kk' => $kk
+				 'id_pasien' => $id_pasien,
+				 'nama_pasien' => $nama_pasien,
+				 'tgl_lahir' => $tgl_lahir,
+				 'jk' => $jk,
+				 'nama_ibu' => $nama_ibu,
+				 'no_hp' => $no_hp,
+				 'email' => $email,
+				 'alamat' => $alamat,
+				 'username' => $username,
+				// 'kk' => $kk,
+				 'password' => $password
+
+				
 			);
 				$this->mPasien->registrasi($user_data);
 
@@ -78,6 +88,7 @@ class CRegistrasiPasien extends CI_Controller {
 				$data['email'] = null;
 				$data['alamat'] = null;
 				$data['username'] = null;
+
 				$this->load->view('pasien_Registrasi', $data);
 			}else{
 				$this->session->set_flashdata('GagalRegistrasiNamaAda',true);

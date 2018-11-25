@@ -70,13 +70,13 @@
           <li class="dropdown user user-menu">
             
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
+                <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email admin -->
                 <span class="hidden-xs"><?php echo $row['name_admin']; ?></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
                   <p>
                     <?php echo $row['name_admin']; ?>
                   </p>
@@ -100,7 +100,7 @@
       <!-- Sidebar panel User -->
       <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+            <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
             <p><?php echo $row['name_admin']; ?></p>
@@ -204,7 +204,7 @@
           <div class="col-lg-4 col-xs-6">
             <div class="small-box" style="background-color: #e8c86b;">
               <div class="inner">
-                  <h3><?php echo $dokter; ?></h3>
+                  <h3><?php echo $Cdokter; ?></h3>
                   <p>Doctor</p>
               </div>
               <div class="icon">
@@ -218,7 +218,7 @@
           <div class="col-lg-4 col-xs-6">
             <div class="small-box" style="background-color: #b0b8b5;">
               <div class="inner">
-                <h3><?php echo $apoteker; ?></h3>
+                <h3><?php echo $Capoteker; ?></h3>
                 <p>Pharmacist</p>
               </div>
               <div class="icon">
@@ -232,13 +232,13 @@
           <div class="col-lg-4 col-xs-6">
             <div class="small-box" style="background-color: #cd7f32;">
               <div class="inner">
-                <h3><?php echo $pasien; ?></h3>
+                <h3><?php echo $Cpasien; ?></h3>
                 <p>Patient</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="<?=base_url()?>cAdmin/hal_data_pasien" class="small-box-footer"><p><?php echo $pasientunggu; ?> Patient Waiting</p></a>
+              <a href="<?=base_url()?>cAdmin/hal_data_pasien" class="small-box-footer"><p><?php echo $Cpasientunggu; ?> Patient Waiting</p></a>
             </div>
           </div>
         </div>

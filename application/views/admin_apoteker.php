@@ -68,13 +68,13 @@
           <li class="dropdown user user-menu">
             
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="user-image" alt="User Image">
+                <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="user-image" alt="User Image">
                 <!-- Email admin -->
                 <span class="hidden-xs"><?php echo $row['name_admin']; ?></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
                   <p>
                     <?php echo $row['name_admin']; ?>
                   
@@ -99,7 +99,7 @@
       <!-- Sidebar panel User -->
       <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?php echo base_url('assets/img/logo.png'); ?>" class="img-circle" alt="User Image">
+            <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
             <p><?php echo $row['name_admin']; ?></p>
@@ -188,7 +188,7 @@
       Pharmacist
       </h1>
 
-<!-- notif rubah password -->
+<!-- notif  -->
       <section class="content-header">
           <div>
             <?php
@@ -199,8 +199,45 @@
                   New Password :   <strong style="font-size:18px;color:black;"><?php echo $sandi; ?></strong> 
                 </div>  
             <?php
-              }
+              }else if($this->session->flashdata('berhasilHapusPeminjam')){
             ?>
+            <div class="alert alert-success fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                   <strong>Successfully delete data !</strong>
+                </div>
+            <?php
+              }else if($this->session->flashdata('berhasil')){
+            ?>
+                <div class="alert alert-success fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Change data <strong>Success !</strong>
+                </div>
+            <?php 
+              }else if($this->session->flashdata('tidakBerhasil')){
+            ?>
+                <div class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Change data <strong>Failed !</strong>
+                </div>
+            <?php
+              }else if($this->session->flashdata('IdPeminjamAda')){
+            ?>
+                <div class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                 Change data <strong>Failed !</strong> Id number already exists
+                </div>
+            
+             <?php
+              }else if($this->session->flashdata('namaAdaUbah')){
+            ?>
+                <div class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Change data <strong>Failed !</strong> Username already exists
+                </div>
+
+              <?php
+              }
+            ?>  
           </div>
         </section>
 
@@ -212,7 +249,33 @@
         <li class="active">Pharmacist Member</li>
       </ol>
     </section>
-
+    <!--peringatan tmabh PUI-->
+        <section class="content-header">
+          <div>
+            
+              
+            <?php
+              if($this->session->flashdata('suksestambah')){
+            ?>
+                <div class="alert alert-success fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Added Pharmacist Register <strong>Successfully!</strong>
+                </div>
+            
+            <?php
+              }else if($this->session->flashdata('gagaltambah')){
+            ?>
+                <div class="alert alert-danger fade in">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  Added pharmacist Register <strong>Failed !</strong> 
+                </div>
+           
+           
+            <?php
+              }
+            ?>
+          </div>
+        </section>
    
 
 
@@ -249,40 +312,47 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Id Pharmacist</th>
+                  <th>Id Doctor</th>
                   <th>Name</th>
+                  <th>Gender</th>
                   <th>Phone</th>
-                  <th>Email</th>
                   <th>Change Password</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                
+                  <?php
+                        $i=0;
+                        foreach ($apoteker->result() as $row) {
+                          $i++;
+                      ?>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td><?php echo $i;?></td>
+                      <td><?php echo $row->nip; ?></td>
+                      <td><?php echo $row->nama_apoteker; ?></td>
+                      <td><?php echo $row->gender; ?></td>
+                      <td><?php echo $row->no_hp; ?></td>
+                    
                       <td>
                          <div class="btn-group">
-                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal" >Change</button>
+                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-<?php echo $row->id_apoteker; ?>" >Change</button>
                         </div>
                       </td>
                       
                       <td>
                       
-                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalview"><i class="glyphicon glyphicon-eye-open"></i></button>
+                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalDetail2<?php echo $row->id_apoteker?>"><i class="glyphicon glyphicon-eye-open"></i></button>
                       
                          
-                          <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#modal-edit"><i class="glyphicon glyphicon-pencil"></i></button>
+                          <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#myModal1<?php echo $row->id_apoteker?>"><i class="glyphicon glyphicon-pencil"></i></button>
                           <div class="btn-group">  
-                          <a href = "#"><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-delete"><i class="glyphicon glyphicon-trash"></i></button></a>
+                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus<?php echo $row->id_apoteker?>"><i class="glyphicon glyphicon-trash"></i></button>
                           </div>
                       </td>
                     </tr>
-                  
+                      <?php
+                      }
+                    ?>
                 </tbody>
               </table>
             </div>
@@ -296,8 +366,10 @@
 
 
 <!--modal change pass user-->
- 
-  <div class="modal modal-default fade" id="modal" >
+ <?php
+      foreach ($apoteker->result() as $row) {
+  ?>
+  <div class="modal modal-default fade" id="modal-<?php echo $row->id_apoteker; ?>" >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -307,10 +379,10 @@
                
               </div>
               <div class="modal-body">
-              <form method="post" action="" data-toggle="validator">
-              <input type="hidden" name="email" value="">
-              <input type="hidden" name="id_penyewa" value="">
-                    <center><p>Are you sure to change password from Username</p></center>
+              <form method="post" action="<?=base_url()?>cAdmin/ubahKataSandiApoteker" data-toggle="validator">
+              <input type="hidden" name="username" value="<?php echo $row->username?>">
+              <input type="hidden" name="id_apoteker" value="<?php echo $row->id_apoteker?>">
+                    <center><p>Are you sure to change password from Pharmacist <?php echo $row->nama_apoteker?></p></center>
              
               <div class="modal-footer">
                
@@ -322,14 +394,16 @@
           </div>
         </div>
       </div>
-
+        <?php
+        }
+      ?>
       
 
 
 
-<!--modal add PUI-->
+<!--modal add -->
    <div class="modal fade" id="modal-add">
-     <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="<?php echo base_url('cAdmin/addApoteker')?>" enctype="multipart/form-data">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -347,7 +421,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-credit-card"></i>
                     </div>
-                    <input type="text" class="form-control" placeholder="Identity number" name="no_identitas" required="">
+                    <input type="text" class="form-control" placeholder="Identity number" name="nip" required="">
                     </div>
                   </div>
                   <div class="form-group">
@@ -356,7 +430,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" class="form-control" placeholder="Name" name="nama_dokter" required="">
+                    <input type="text" class="form-control" placeholder="Name" name="nama_apoteker" required="">
                     </div>
                   </div>
                   <div class="form-group">
@@ -365,7 +439,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input min="<?php echo date('Y-m-d') ?>" type="date"  data-format="dd/MM/yyyy" class="form-control pull-right" id="datepicker" name="ttl" required>
+                    <input max="<?php echo date('Y-m-d') ?>" type="date"  data-format="dd/MM/yyyy" class="form-control pull-right" id="datepicker" name="tgl_lahir" required>
                     </div>
                   </div>
                   <div class="form-group">
@@ -374,7 +448,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <select class="form-control">
+                    <select class="form-control" name="gender">
                                   <option>Female</option>
                                   <option>Male</option>
                     
@@ -387,7 +461,7 @@
                     <div class="input-group-addon">
                       <i class="fa fa-user"></i>
                     </div>
-                    <input type="text" class="form-control" placeholder="Phone" name="nohp" required="">
+                    <input type="text" class="form-control" placeholder="Phone" name="no_hp" required="">
                     </div>
                   </div>
                   <div class="form-group">
@@ -400,6 +474,15 @@
                    </div>
                   </div>
                   <div class="form-group">
+                    <label for="exampleInputEmail1">Address </label>
+                    <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-font"></i>
+                    </div>
+                    <input type="textarea" class="form-control" placeholder="Address" name="alamat" required="">
+                   </div>
+                  </div>
+                  <div class="form-group">
                     <label for="exampleInputName1">Username  </label>
                     <div class="input-group">
                     <div class="input-group-addon">
@@ -408,15 +491,15 @@
                     <input type="text" class="form-control" placeholder="Username" name="username" required="">
                     </div>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="exampleInputPAss1">Password </label>
                     <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-pencil"></i>
                     </div>
-                    <input type="password" class="form-control" placeholder="Insert 'chopra' for password without quotes ! " name="pass" required="">
+                    <input type="password" class="form-control" placeholder="Insert 'chopra' for password ! " name="password" required="">
                     </div>
-                  </div>
+                  </div> -->
                   </div>
                   </form>
                   </div>
@@ -450,114 +533,204 @@
       </div>
 
 
-       <!--modal view-->
-
-<div class="modal fade" id="modalview">
-    <form method="post" action=""> 
-          <div class="modal-dialog">
+       <!-- modal detail -->
+      <?php
+        foreach ($apoteker->result() as $row) {
+      ?>
+        <div class="modal fade" id="myModalDetail2<?php echo $row->id_apoteker?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">View</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title" id="myModalLabel">Detail Data Pharmacist <?php echo $row->nama_apoteker;?></h4></center>
               </div>
               <div class="modal-body">
-                <div class="box box-primary">
-            <form role="form">
-              <div class="box-body">
-                
-                <div class="form-group">
-                    <label>Id Pharmacist</label>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-pencil"></i>
-                        </div>
-                        <input type="text" class="form-control" name="no_identitas" disabled="disabled" value="">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Name:</label>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-pencil"></i>
-                        </div>
-                        <input type="text" class="form-control" name="nama_dokter" disabled="disabled" value="">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Date of Birth:</label>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-pencil"></i>
-                        </div>
-                        <input type="text" class="form-control" name="ttl" disabled="disabled" value="">
-                    </div>
-                </div>
-                
-                
-                <div class="form-group">
-                    <label>Gender:</label>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-pencil"></i>
-                        </div>
-                        <input type="text" class="form-control" name="jk" disabled="disabled" value="">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Phone:</label>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-pencil"></i>
-                        </div>
-                        <input type="text" class="form-control" name="nohp" disabled="disabled" value="">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Email:</label>
-                    <div class="input-group">
-                        <div class="input-group-addon">
-                            <i class="fa fa-pencil"></i>
-                        </div>
-                        <input type="text" class="form-control" name="email" disabled="disabled" value="">
-                    </div>
-                </div>
-                
+                <div class="col-xs-12">
+                <div class="box">
+                   <table class="table">
+                    <tr>
+                      <td class="col-xs-4">Id Number</td>
+                      <td class="col-xs-8"><?php echo $row->nip;?></td>
+                    </tr>
+                    <tr>
+                      <td>Name</td>
+                      <td><?php echo $row->nama_apoteker;?></td>
+                    </tr>
+                    <tr>
+                      <td>Username</td>
+                      <td><?php echo $row->username;?></td>
+                    </tr>
+                    <tr>
+                      <td>Date of Birth</td>
+                      <td><?php echo $row->tgl_lahir;?></td>
+                    </tr>
+                    <tr>
+                      <td>Gender</td>
+                      <td><?php echo $row->gender;?></td>
+                    </tr>
+                    <tr>
+                      <td>Address</td>
+                      <td><?php echo $row->alamat;?></td>
+                    </tr>
+                    <tr>
+                      <td>Phone</td>
+                      <td><?php echo $row->no_hp;?></td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td><?php echo $row->email;?></td>
+                    </tr>
+                  </table>
               </div>
-              
-            </form>
-          </div>
               </div>
               <div class="modal-footer">
-               <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Ok</button>
+                <button type="button" class="btn btn-danger pull-right" data-dismiss="modal">Close</button>
               </div>
-            </div>
+            </div>          
           </div>
-        </form>
         </div>
-
+        </div>
+      <?php
+        }
+      ?>
    
 
-<!--modal delete -->
-        <div class="modal fade" id="modal-delete">
-          <div class="modal-dialog">
+ <!--modal hapus data-->
+      <?php
+        foreach ($apoteker->result() as $row) {
+      ?>
+        <div class="modal fade" id="hapus<?php echo $row->id_apoteker?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-               
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title" id="myModalLabel">Warning !</h4></center>
               </div>
               <div class="modal-body">
-              <label name="">Delete Success
-              </label>
+                  <form method="post" action="<?=base_url()?>cAdmin/hapusApoteker" data-toggle="validator">
+                    <input type="hidden" name="id_apoteker" value="<?php echo $row->id_apoteker?>">
+                    <center><p>Are you sure delete data Pharmacist <?php echo $row->nama_apoteker;?> ?</p></center>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Yes</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                  </form>
+            </div>          
+          </div>
+        </div>
+        </div>
+      <?php
+        }
+      ?>
+
+      <!-- modal ubah data -->
+      <?php
+        $i=0;
+        foreach ($apoteker->result() as $row) {
+        $i++;
+      ?>
+        
+        <div class="modal fade" id="myModal1<?php echo $row->id_apoteker?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <center><h4 class="modal-title" id="myModalLabel">Change Data Pharmacist <?php echo $row->nama_apoteker;?></h4></center>
               </div>
-              <div class="modal-footer">
-           
-                </a>
-              </div>
+              <div class="modal-body">
+                <form method="post" action="<?=base_url()?>cAdmin/ubahDataApoteker" data-toggle="validator">
+                  <input type="hidden" name="idAwal" value="<?php echo $row->nip?>">
+                  <input type="hidden" name="nama_pengguna_awal" value="<?php echo $row->username;?>">
+                  <div class="form-group">
+                    <label>Id Number</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-credit-card"></i>
+                      </div>
+                       <input type="number" class="form-control" value="<?php echo $row->nip?>" name="nip" placeholder="Example : 3210987689098765" required autofocus>
+                      </div>
+                  </div><!-- /.form-group -->
+                  <div class="form-group">
+                    <label>Name</label>
+                     <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-font"></i>
+                      </div>
+                    <input type="text" class="form-control" value="<?php echo $row->nama_apoteker?>" name="nama_apoteker" placeholder="Name" required>
+                    </div>
+                  </div><!-- /.form-group -->
+                  <div class="form-group">
+                    <label>Username</label>
+                     <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                      </div>
+                    <input type="text" class="form-control" value="<?php echo $row->username?>" name="username" placeholder="Username" required>
+                    </div>
+                  </div><!-- /.form-group -->
+                  <div class="form-group">
+                    <label>Date of Birth</label>
+                     <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                      </div>
+                    <input type="text" class="form-control" value="<?php echo $row->tgl_lahir?>" name="tgl_lahir" placeholder="Date of Birth" required>
+                    </div>
+                  </div><!-- /.form-group -->
+                  <div class="form-group">
+                    <label>Gender</label>
+                     <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                      </div>
+                    <select class="form-control" name="gender">
+                                  <option>Female</option>
+                                  <option>Male</option>
+                    
+                      </select>
+                    </div>
+                  </div><!-- /.form-group -->
+                  <div class="form-group">
+                    <label>Address</label>
+                     <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-home"></i>
+                      </div>
+                    <input type="text" class="form-control" value="<?php echo $row->alamat?>" name="alamat" placeholder="Address" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Phone</label>
+                     <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-phone"></i>
+                      </div>
+                    <input type="number" data-maxlength="12" class="form-control" value="<?php echo $row->no_hp?>" name="no_hp" placeholder="Example : 081188880000" required>
+                    </div>
+                  </div><!-- /.form-group -->
+                  <div class="form-group">
+                    <label>Email</label>
+                     <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-envelope-o"></i>
+                      </div>
+                    <input type="email" class="form-control" value="<?php echo $row->email?>" name="email" placeholder="Email" required>
+                    </div>
+                  </div><!-- /.form-group -->
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Change</button>
+                  </div>         
+                </form>
+              </div>          
             </div>
           </div>
         </div>
+        
+      <?php
+        }
+      ?>
+
   <!-- 5. Membuat Footer-->
  
   <footer class="main-footer">

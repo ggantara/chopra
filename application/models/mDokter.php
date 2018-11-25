@@ -21,5 +21,8 @@
             $hasil = $this->db->query("select * from pasien join antrian");
             return $hasil;
         }
+        public function ubahSandi($id_dokter,$newpass){
+      $this->db->query("update dokter set password=md5('$newpass') where id_dokter='$id_dokter'");
+    }
 
 }
