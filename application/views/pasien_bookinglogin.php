@@ -235,7 +235,26 @@
 
 
 <!-- mendefinisikan Link -->
-
+<script type="text/javascript">
+    $(document).ready(function() {
+  // By Default Disable radio button
+  // $(".second").attr('disabled', true);
+  // $(".wrap").css('opacity', '.2'); // This line is used to lightly hide label for disable radio buttons.
+  // Disable radio buttons function on Check Disable radio button.
+  $("form input:radio").change(function() {
+  if ($(this).val() == "Disable") {
+  $(".waktu").attr('checked', false);
+  $(".waktu").attr('disabled', true);
+  $(".wrap").css('opacity', '.2');
+  }
+  // Else Enable radio buttons.
+  else {
+  $(".waktu").attr('disabled', false);
+  $(".wrap").css('opacity', '1');
+  }
+  });
+  });
+</script>
 <!-- jQuery 3 -->
 <script src="<?php echo base_url('/AdminLTE/bower_components/jquery/dist/jquery.min.js'); ?>"></script>
 <!-- jQuery UI 1.11.4 -->

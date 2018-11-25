@@ -6,6 +6,7 @@ class CDokter extends CI_Controller {
     parent::__construct();
     
     $this->load->model("mDokter");
+     $this->load->model("mApoteker");
   }
 
   public function session(){
@@ -46,7 +47,7 @@ class CDokter extends CI_Controller {
   public function hal_data_checkuppasien(){
     $data = $this->session();
     $data['checkuppasien'] = $this->mDokter->get_data_checkuppasien();
-    
+     $data['obat'] = $this->mApoteker->get_data_obat();
     $this->load->view('dokter_periksa',$data);
   }
 

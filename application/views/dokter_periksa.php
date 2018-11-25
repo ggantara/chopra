@@ -168,7 +168,7 @@
          <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-primary">
-            <form method="post" action="<?php echo base_url('')?>" enctype="multipart/form-data">
+            <form method="post" action="<?php echo base_url('cDokter/hal_data_checkuppasien')?>" enctype="multipart/form-data">
                 <div class="box-body">
                     
                   <!--   <input type="hidden" name="id_penyewa" value="<?php echo $row['id_penyewa']; ?>">
@@ -224,20 +224,34 @@
                         <div class="input-group-addon">
                             <i class="fa fa-user"></i>
                         </div>
-                    <textarea class="form-control" rows="3" placeholder="Addres"></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Disease"></textarea>
                     </div>
                   </div>
 
-                <div class="form-group">
-                  <label>Medicines</label>
-                  <select class="form-control">
-                    <option>Demacolin 1</option>
-                    <option>Demacolin 2</option>
-                    <option>Pharasetamol 3</option>
-                    <option>Pharasetamol 4</option>
-                    <option>Pharasetamol 5</option>
-                  </select>
                
+                  
+
+                  <div class="form-group">
+                  <label>Medicines</label>
+                  <select class="form-control" >
+                    <?php
+                          foreach ($obat->result() as $row) {
+                    ?>
+                    <option name="obat[]" value="<?php echo $row->id_obat;?>"><?php echo $row->nama_obat;?></option>
+                    <?php
+                          }
+                        ?>
+                  </select>
+                </div>
+
+                  
+                     
+               
+                
+
+
+
+
                  
                    <br><br>
                     <div class="input-group">
