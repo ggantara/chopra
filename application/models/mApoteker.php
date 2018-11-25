@@ -15,7 +15,7 @@
     		return $hasil;
     	}
     	public function get_data_transaksipasien(){
-    		$hasil = $this->db->query("select * from periksa");
+    		$hasil = $this->db->query("select * from transaksi");
     		return $hasil;
     	}
         public function ubahSandi($id_apoteker,$newpass){

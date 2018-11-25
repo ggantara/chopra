@@ -1,4 +1,4 @@
-s<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 
@@ -163,8 +163,27 @@ s<!DOCTYPE html>
           <li class="active">Medicine</li>
         </ol>
       </section>
-            <!-- Membuat tampilan untuk table -->      
+           <!-- Tampilan untuk mendefinisikan button Daftar PUI -->
+    <section class="content">
+
+      <div class="row">
+      <!-- Button Daftar PUI -->
+        <div class="col-lg-3 col-xs-6">
+        
+         
+        </div>
+        <div class="col-lg-7 col-xs-6"></div>
+        <div class="col-lg-2 col-xs-6">
+          <a href="<?php echo base_url(''); ?>">
+            <button type="button" class="btn btn-block btn-success"><i class="fa fa-file-excel-o"> &nbsp;Export</i></button>
+          </a>
+        </div>
+      </div>
+      <br>
+      
+      <!-- Membuat tampilan untuk table -->      
       <section class="content">
+             
       <div class="row">
         <div class="col-xs-12">
 
@@ -176,20 +195,26 @@ s<!DOCTYPE html>
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Name</th>
+                  <th>Medicine</th>
                   <th>Quantity</th>
                   
                 </tr>
                 </thead>
                 <tbody>
-                  
+                  <?php
+                        $i=0;
+                        foreach ($obat->result() as $row) {
+                          $i++;
+                      ?>
                     <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      <td><?php echo $i;?></td>
+                      <td><?php echo $row->nama_obat; ?></td>
+                      <td><?php echo $row->jumlah; ?></td>
                       
                     </tr>
-                  
+                    <?php
+                      }
+                    ?>
                 </tbody>
               </table>
             </div>
@@ -197,17 +222,10 @@ s<!DOCTYPE html>
           </div>
         </div>
       </div>
-    </section>
-      
-
-      
-      </div>
-        
     
-     
-         
-          </div>
-        </div>
+    </section>
+  </div>
+
         
              
        
