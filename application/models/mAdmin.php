@@ -86,7 +86,7 @@
       $this->db->query("update dokter set password=md5('$passBaru') where username='$username'");
     }
     //random_katasandi
-    public function random_katasandi($length=8) {
+    public function random_katasandi($length=4) {
         $chars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789";
         $password = substr( str_shuffle( $chars ), 0, $length );
         return $password;
@@ -95,6 +95,10 @@
     public function ubahKataSandiApoteker($username,$passBaru){
        
       $this->db->query("update apoteker set password=md5('$passBaru') where username='$username'");
+    }
+    public function ubahKataSandiPasien($username,$passBaru){
+       
+      $this->db->query("update pasien set password=md5('$passBaru') where username='$username'");
     }
     
     public function hapusDokter($id_dokter){

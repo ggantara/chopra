@@ -206,6 +206,7 @@ class CAdmin extends CI_Controller {
         $this->mAdmin->ubahKataSandiApoteker($username,$passBaru);
         $this->session->set_flashdata('sukseskatasandiUbah',true);
         $data['error'] = "";
+        $data['password'] = $this->mAdmin->random_katasandi(8);
         $data['sandi'] = $passBaru;
         $data['apoteker'] = $this->mAdmin->get_data_apoteker();
         $this->load->view('admin_apoteker',$data);
@@ -218,6 +219,7 @@ class CAdmin extends CI_Controller {
         $this->mAdmin->ubahKataSandiPasien($username,$passBaru);
         $this->session->set_flashdata('sukseskatasandiUbah',true);
         $data['error'] = "";
+        $data['password'] = $this->mAdmin->random_katasandi(8);
         $data['sandi'] = $passBaru;
        $data['pasien'] = $this->mAdmin->get_data_pasien();
         $this->load->view('admin_pasien',$data);
