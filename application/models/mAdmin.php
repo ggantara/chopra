@@ -172,4 +172,28 @@
 			return $hasil;
 		}
 
+		public function allDokter($column)
+	    {
+	        
+	        $memberDokter = $this->db->query("SELECT @rownum := @rownum + 1 AS rank, $column FROM dokter, (SELECT @rownum := 0) r ");
+
+	        return $memberDokter->result_array();
+	    }
+	    public function allApoteker($column)
+	    {
+	        
+	        $memberApoteker = $this->db->query("SELECT @rownum := @rownum + 1 AS rank, $column FROM apoteker, (SELECT @rownum := 0) r ");
+
+	        return $memberApoteker->result_array();
+	    }
+	    public function allPasien($column)
+	    {
+	        
+	        $memberPasien = $this->db->query("SELECT @rownum := @rownum + 1 AS rank, $column FROM pasien, (SELECT @rownum := 0) r ");
+
+	        return $memberPasien->result_array();
+	    }
+
+
+
 }

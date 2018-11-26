@@ -6,6 +6,7 @@ class CAdmin extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model("mAdmin");
+		 $this->load->library(['PHPExcel', 'PHPExcel/IOFactory']);
 	}
 
 	public function session(){
@@ -644,6 +645,161 @@ class CAdmin extends CI_Controller {
 			$this->load->view('admin_schedule',$data);
 		}
 	}
+
+	public function exportDokter()
+    {
+        $this->phpexcel->setActiveSheetIndex(0);
+        $this->phpexcel->getActiveSheet()->setTitle('Data Dokter');
+
+        $column = 'nip, nama_dokter,tgl_lahir,gender,alamat, no_hp, email';
+
+        $users = $this->mAdmin->allDokter($column);
+
+        if (!is_null($users)) {
+            array_unshift(
+                $users, ['No.', 'NIP', 'Nama Dokter','TTL','Gender','Alamat', 'No Hp', 'Email']
+            );
+        }
+
+
+        // Assign cell values
+        $objSheet = $this->phpexcel->getActiveSheet();
+
+        $objSheet->getColumnDimension('A')
+            ->setWidth(6);
+        $objSheet->getColumnDimension('B')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('C')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('D')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('E')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('F')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('G')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('H')
+            ->setWidth(30);
+
+        $this->phpexcel->getActiveSheet()->fromArray($users);
+
+
+        $filename= 'Data Dokter.xls'; //save our workbook as this file name
+
+        header('Content-Type: application/vnd.ms-phpexcel'); //mime type
+
+        header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+
+        header('Cache-Control: max-age=0'); //no cache
+
+        $objWriter = IOFactory::createWriter($this->phpexcel, 'Excel5');
+        $objWriter->save('php://output');
+    }
+
+    public function exportApoteker()
+    {
+        $this->phpexcel->setActiveSheetIndex(0);
+        $this->phpexcel->getActiveSheet()->setTitle('Data Apoteker');
+
+        $column = 'nip, nama_apoteker,tgl_lahir,gender,alamat, no_hp, email';
+
+        $users = $this->mAdmin->allApoteker($column);
+
+        if (!is_null($users)) {
+            array_unshift(
+                $users, ['No.', 'NIP', 'Nama Apoteker','TTL','Gender','Alamat', 'No Hp', 'Email']
+            );
+        }
+
+
+        // Assign cell values
+        $objSheet = $this->phpexcel->getActiveSheet();
+
+        $objSheet->getColumnDimension('A')
+            ->setWidth(6);
+        $objSheet->getColumnDimension('B')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('C')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('D')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('E')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('F')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('G')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('H')
+            ->setWidth(30);
+
+        $this->phpexcel->getActiveSheet()->fromArray($users);
+
+
+        $filename= 'Data Apoteker.xls'; //save our workbook as this file name
+
+        header('Content-Type: application/vnd.ms-phpexcel'); //mime type
+
+        header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+
+        header('Cache-Control: max-age=0'); //no cache
+
+        $objWriter = IOFactory::createWriter($this->phpexcel, 'Excel5');
+        $objWriter->save('php://output');
+    }
+
+    public function exportPasien()
+    {
+        $this->phpexcel->setActiveSheetIndex(0);
+        $this->phpexcel->getActiveSheet()->setTitle('Data Pasien');
+
+        $column = 'id_pasien, nama_pasien,tgl_lahir,jk,nama_ibu,alamat, no_hp, email';
+
+        $users = $this->mAdmin->allPasien($column);
+
+        if (!is_null($users)) {
+            array_unshift(
+                $users, ['No.', 'NIP', 'Nama Pasien','TTL','Gender','nama_ibu','Alamat', 'No Hp', 'Email']
+            );
+        }
+
+
+        // Assign cell values
+        $objSheet = $this->phpexcel->getActiveSheet();
+
+        $objSheet->getColumnDimension('A')
+            ->setWidth(6);
+        $objSheet->getColumnDimension('B')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('C')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('D')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('E')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('F')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('G')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('H')
+            ->setWidth(30);
+         $objSheet->getColumnDimension('I')
+            ->setWidth(30);
+
+        $this->phpexcel->getActiveSheet()->fromArray($users);
+
+
+        $filename= 'Data Pasien.xls'; //save our workbook as this file name
+
+        header('Content-Type: application/vnd.ms-phpexcel'); //mime type
+
+        header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+
+        header('Cache-Control: max-age=0'); //no cache
+
+        $objWriter = IOFactory::createWriter($this->phpexcel, 'Excel5');
+        $objWriter->save('php://output');
+    }
 
 	
 
