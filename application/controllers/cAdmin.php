@@ -801,6 +801,47 @@ class CAdmin extends CI_Controller {
         $objWriter->save('php://output');
     }
 
+ public function exportJadwal()
+    {
+        $this->phpexcel->setActiveSheetIndex(0);
+        $this->phpexcel->getActiveSheet()->setTitle('Data Schedule');
+
+        $column = 'no_antri,waktu';
+
+        $users = $this->mAdmin->allJadwal($column);
+
+        if (!is_null($users)) {
+            array_unshift(
+                $users, ['No.', 'No Urutan', 'Jam']
+            );
+        }
+
+
+        // Assign cell values
+        $objSheet = $this->phpexcel->getActiveSheet();
+
+        $objSheet->getColumnDimension('A')
+            ->setWidth(6);
+        $objSheet->getColumnDimension('B')
+            ->setWidth(30);
+        $objSheet->getColumnDimension('C')
+            ->setWidth(30);
+        
+
+        $this->phpexcel->getActiveSheet()->fromArray($users);
+
+
+        $filename= 'Data Schedule.xls'; //save our workbook as this file name
+
+        header('Content-Type: application/vnd.ms-phpexcel'); //mime type
+
+        header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
+
+        header('Cache-Control: max-age=0'); //no cache
+
+        $objWriter = IOFactory::createWriter($this->phpexcel, 'Excel5');
+        $objWriter->save('php://output');
+    }
 	
 
 

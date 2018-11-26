@@ -10,9 +10,7 @@ class CLoginAdmin extends CI_Controller {
 
 	public function index()
 	{
-		// $data['username'] = null;
-		// $this->load->view("admin_Login",$data);
-		//untuk login gak bisa diback
+		
 		if($this->mLoginAdmin->cekLogin()){
 	    	redirect('cAdmin');
 	    }

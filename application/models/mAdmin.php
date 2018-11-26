@@ -193,6 +193,13 @@
 
 	        return $memberPasien->result_array();
 	    }
+	    public function allJadwal($column)
+	    {
+	        
+	        $schedule = $this->db->query("SELECT @rownum := @rownum + 1 AS rank, $column FROM jadwal, (SELECT @rownum := 0) r ");
+
+	        return $schedule->result_array();
+	    }
 
 
 
