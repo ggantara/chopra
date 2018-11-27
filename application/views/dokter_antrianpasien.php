@@ -44,16 +44,16 @@
 
 
 <body class="hold-transition skin-blue sidebar-mini">
-                <?php 
-                    $row = $this->db->query("SELECT * FROM dokter where username='".$this->session->username."'")->row_array();
-                ?>
+  <?php 
+  $row = $this->db->query("SELECT * FROM dokter where username='".$this->session->username."'")->row_array();
+  ?>
 
-<!--action rubah sandi-->
-        
-      
+  <!--action rubah sandi-->
 
 
-<!-- Mendefinisikan Headernya -->
+
+
+  <!-- Mendefinisikan Headernya -->
 
   <div class="wrapper">
     <header class="main-header">
@@ -72,10 +72,10 @@
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
           <span class="sr-only">Toggle navigation</span>
         </a>
-  <!-- Gambar dan Nama User serta Logout dalam bentuk dropdown -->
+        <!-- Gambar dan Nama User serta Logout dalam bentuk dropdown -->
 
 
-               
+
 
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
@@ -97,130 +97,131 @@
                 </li>
                 <li class="user-footer">
                   <div class="pull-right">
-                     <a href="<?php echo base_url('cLoginDokter/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
-                  </div>
-                </li>
-              </ul>
-            </li>
-          </ul>
+                   <a href="<?php echo base_url('cLoginDokter/logout'); ?>" class="btn btn-default btn-flat">Sign out</a>
+                 </div>
+               </li>
+             </ul>
+           </li>
+         </ul>
+       </div>
+     </nav>
+   </header>
+
+   <!-- 3. Membuat Sidebar sebelah kiri yang mengandung logo -->
+   <aside class="main-sidebar">
+    <section class="sidebar">
+
+      <!-- Sidebar panel User -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
         </div>
-      </nav>
-    </header>
-
-    <!-- 3. Membuat Sidebar sebelah kiri yang mengandung logo -->
-    <aside class="main-sidebar">
-      <section class="sidebar">
-
-        <!-- Sidebar panel User -->
-        <div class="user-panel">
-          <div class="pull-left image">
-            <img src="<?php echo base_url('assets/img/logo1.png'); ?>" class="img-circle" alt="User Image">
-          </div>
-          <div class="pull-left info">
-            <p> Doctor <?php echo $row['nama_dokter']; ?></p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-          </div>
+        <div class="pull-left info">
+          <p> Doctor <?php echo $row['nama_dokter']; ?></p>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
+      </div>
 
-        <!-- sidebar menu: -->
-        <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">MENU</li>
+      <!-- sidebar menu: -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MENU</li>
 
-          <!-- Halaman Profile-->
-          <li >
-            <a href="<?=base_url()?>cDokter">
-              <i class="fa fa-user"></i> 
-              <span>Profile</span>
-            </a>
-          </li>
+        <!-- Halaman Profile-->
+        <li >
+          <a href="<?=base_url()?>cDokter">
+            <i class="fa fa-user"></i> 
+            <span>Profile</span>
+          </a>
+        </li>
 
-          <!-- Halaman Schedule -->
-          <li class="active treeview">
-            <a href="<?=base_url()?>cDokter/hal_data_antrianpasien">
-              <i class="fa fa-calendar"></i> <span>Patient Queue</span>
-            </a>
-          </li>
+        <!-- Halaman Schedule -->
+        <li class="active treeview">
+          <a href="<?=base_url()?>cDokter/hal_data_antrianpasien">
+            <i class="fa fa-calendar"></i> <span>Patient Queue</span>
+          </a>
+        </li>
 
-          
-        </ul>
-      </section>
-    </aside>
 
-    <!-- 4. Halaman Show -->
-    <div class="content-wrapper">
-      <!-- Menampilkan kontent header yang mengandung Breadcrumb -->
-      <section class="content-header">
-        <h1>
-          Patient Queue
-        </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Patient Queue</li>
-        </ol>
-      </section>
+      </ul>
+    </section>
+  </aside>
 
-      
+  <!-- 4. Halaman Show -->
+  <div class="content-wrapper">
+    <!-- Menampilkan kontent header yang mengandung Breadcrumb -->
+    <section class="content-header">
+      <h1>
+        Patient Queue
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Patient Queue</li>
+      </ol>
+    </section>
 
-      <!-- Membuat tampilan untuk table -->      
-      <section class="content">
+
+
+    <!-- Membuat tampilan untuk table -->      
+    <section class="content">
       <div class="row">
         <div class="col-xs-12">
 
           <div class="box">
             <!-- /.box-header -->
             <div class="table-responsive">
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Queue</th>
-                  <th>Name</th>
-                   <th>Gender</th>
-                  <th>Action</th>
-                  
-                </tr>
-                </thead>
-                <tbody>
-                  
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td>
-                        <div class="btn-group"> 
-                        <a href="<?=base_url()?>cDokter/hal_data_checkuppasien">
-                        <button type="button" class="btn btn-info" >Checkup</i></button>
-                        </a>
-                        </div>
-                        
-
-                      </td>
-                      
-                    </tr>
-                  
-                </tbody>
-              </table>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+              <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
       
-      </div>
-        
-    
-      
-        
-             
-       
+    <thead>
+      <tr>
 
-  <!-- 5. Membuat Footer-->
-  <footer class="main-footer">
-      <div class="container">
-        <strong>Copyright &copy;<?php echo date("Y"); ?> Chopra.</strong> Yogyakarta
-      </div>
-    </footer>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($pasien as $key => $value): ?>
+        <tr>
+
+          <td><?php echo $value['nama_pasien'] ?></td>
+          <td><?php echo $value['jk'] ?></td>
+          <td>
+            <div class="btn-group"> 
+              <a href="<?=base_url()?>cDokter/hal_data_checkuppasien">
+                <button type="button" class="btn btn-info" >Checkup</i></button>
+              </a>
+            </div>
+
+
+          </td>
+
+        </tr>
+      <?php endforeach ?>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+</div>
+
+
+
+
+
+
+
+<!-- 5. Membuat Footer-->
+<footer class="main-footer">
+  <div class="container">
+    <strong>Copyright &copy;<?php echo date("Y"); ?> Chopra.</strong> Yogyakarta
+  </div>
+</footer>
 </div>
 
 
@@ -265,30 +266,30 @@
 <script src="<?php echo base_url('/AdminLTE/dist/js/demo.js'); ?>"></script>
 
 <!-- page script mata -->
-    <script src="<?=base_url()?>assets/js/validator.js"></script>
-    <script>
-      function show() {
-          var p = document.getElementById('pwd');
-          p.setAttribute('type', 'text');
-      }
+<script src="<?=base_url()?>assets/js/validator.js"></script>
+<script>
+  function show() {
+    var p = document.getElementById('pwd');
+    p.setAttribute('type', 'text');
+  }
 
-      function hide() {
-          var p = document.getElementById('pwd');
-          p.setAttribute('type', 'password');
-      }
+  function hide() {
+    var p = document.getElementById('pwd');
+    p.setAttribute('type', 'password');
+  }
 
-      var pwShown = 0;
+  var pwShown = 0;
 
-      document.getElementById("eye").addEventListener("click", function () {
-          if (pwShown == 0) {
-              pwShown = 1;
-              show();
-          } else {
-              pwShown = 0;
-              hide();
-          }
-      }, false);
-    </script>
+  document.getElementById("eye").addEventListener("click", function () {
+    if (pwShown == 0) {
+      pwShown = 1;
+      show();
+    } else {
+      pwShown = 0;
+      hide();
+    }
+  }, false);
+</script>
 </body>
 
 </html>

@@ -291,7 +291,7 @@
         </div>
         <div class="col-lg-7 col-xs-6"></div>
         <div class="col-lg-2 col-xs-6">
-           <a href="<?php echo base_url('cAdmin/exportJadwal'); ?>">
+          <a href="<?php echo base_url(''); ?>">
             <button type="button" class="btn btn-block btn-success"><i class="fa fa-file-excel-o"> &nbsp;Export</i></button>
           </a>
         </div>

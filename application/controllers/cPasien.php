@@ -53,7 +53,7 @@ class CPasien extends CI_Controller {
 		$data['antrianpasien'] = $this->mPasien->get_data_antrianpasien();
 		$this->load->view('pasien_queue',$data);
 	}
-
+ 
 
 	public function ubahKataSandi(){
     $id_pasien = $this->input->post('id_pasien');

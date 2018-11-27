@@ -14,10 +14,13 @@
     	}
 
         public function get_data_antrianpasien(){
-            $hasil = $this->db->query("select * from antrian");
-            return $hasil;
+            $this->db->join('pasien', 'id_pasien = pasien.id_pasien', 'left');
+            $hasil = $this->db->query("select * from pasien");
+            return $hasil->result_array();
         }
-    	public function get_data_checkuppasien(){
+        public function get_data_checkuppasien(){
+        //     $ambil=$this->db->get('news');
+        // return $ambil->result_array();
             $hasil = $this->db->query("select * from pasien join antrian");
             return $hasil;
         }

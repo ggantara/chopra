@@ -171,36 +171,13 @@
 			$hasil = $this->db->query("update pasien set id_pasien='$id_pasien',nama_pasien='$nama_pasien',username='$username',tgl_lahir='$tgl_lahir',jk='$jk',nama_ibu='$nama_ibu',alamat='$alamat',no_hp='$no_hp',email='$email' where id_pasien='$idAwal'");
 			return $hasil;
 		}
-
-		public function allDokter($column)
-	    {
-	        
-	        $memberDokter = $this->db->query("SELECT @rownum := @rownum + 1 AS rank, $column FROM dokter, (SELECT @rownum := 0) r ");
-
-	        return $memberDokter->result_array();
-	    }
-	    public function allApoteker($column)
-	    {
-	        
-	        $memberApoteker = $this->db->query("SELECT @rownum := @rownum + 1 AS rank, $column FROM apoteker, (SELECT @rownum := 0) r ");
-
-	        return $memberApoteker->result_array();
-	    }
-	    public function allPasien($column)
-	    {
-	        
-	        $memberPasien = $this->db->query("SELECT @rownum := @rownum + 1 AS rank, $column FROM pasien, (SELECT @rownum := 0) r ");
-
-	        return $memberPasien->result_array();
-	    }
-	    public function allJadwal($column)
-	    {
-	        
-	        $schedule = $this->db->query("SELECT @rownum := @rownum + 1 AS rank, $column FROM jadwal, (SELECT @rownum := 0) r ");
-
-	        return $schedule->result_array();
-	    }
-
-
+		function ubah_status($id)
+	{
+		$status="";
+		$hasil['status']="Booked";
+		$this->db->query("UPDATE jadwal SET status='$status' WHERE id_jadwal !='$id'");
+		$this->db->where('id_status', $id);
+		$this->db->update('jadwal', $hasil);
+	}
 
 }
